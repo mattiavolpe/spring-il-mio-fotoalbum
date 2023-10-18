@@ -1,0 +1,21 @@
+body {
+	font-family: 'Young Serif', serif;
+}
+
+header .logout {
+	display: none;
+}
+
+.card-body > img {
+	object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+	header .logout {
+		display: inline-block;
+	}
+	
+	header .logout-mobile {
+		display: none;
+	}
+}
