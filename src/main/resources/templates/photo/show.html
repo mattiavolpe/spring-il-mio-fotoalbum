@@ -43,6 +43,16 @@
 				
 				<h3 class="mt-4 mb-0 text-center">[[*{description}]]</h3>
 				
+				<div th:if="*{categories.size > 0}" class="bg-body-secondary mt-4 p-3 rounded">
+					<h4 class="m-0">Categories:</h4>
+					<span th:each="category, cycleStats : *{categories}" th:unless="${cycleStats.last}" class="fst-italic">
+						[[${category.name}]] - 
+					</span>
+					<span th:each="category, cycleStats : *{categories}" th:if="${cycleStats.last}" class="fst-italic">
+						[[${category.name}]]
+					</span>
+				</div>
+				
 			</div>
 			
 		</main>

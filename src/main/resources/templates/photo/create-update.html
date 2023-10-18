@@ -11,35 +11,35 @@
 		
 			<div class="container">
 				
+				<h1 class="text-center mb-0">[[*{id == 0 ? 'NEW PHOTO' : 'EDIT "' + {title} + '"'}]]</h1>
+				
 				<form method="post">
 					<!--/*
 						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 					*/-->
 					
 					<div class="my-4">
-						<div class="d-flex align-items-center gap-3">
-							<label for="title" class="w-25">Title: </label>
-							<input type="text" maxlength="255" placeholder="Type the image title..." th:field="*{title}" required />
-						</div>
+						<label for="title" class="d-block">Title: </label>
+						<input type="text" maxlength="255" placeholder="Type the image title..." th:field="*{title}" required />
 						<ul th:if="${#fields.hasErrors('title')}" class="alert alert-danger list-unstyled mt-2">
 							<li th:each="error : ${#fields.errors('title')}">[[${error}]]</li>
 						</ul>
 					</div>
 					
 					<div class="my-4">
-						<div class="d-flex align-items-center gap-3">
-							<label for="description" class="w-25">Description: </label>
-							<input type="text" maxlength="2000" placeholder="Type the image description..." th:field="*{description}" />
-						</div>
+						<label for="description" class="d-block">Description: </label>
+						<input type="text" maxlength="2000" placeholder="Type the image description..." th:field="*{description}" />
 						<ul th:if="${#fields.hasErrors('description')}" class="alert alert-danger list-unstyled mt-2">
 							<li th:each="error : ${#fields.errors('description')}">[[${error}]]</li>
 						</ul>
 					</div>
 					
 					<div class="my-4">
-						<div class="d-flex align-items-center gap-3">
-							<label for="url" class="w-25">Image URL: </label>
-							<input type="text" maxlength="2000" placeholder="Type the image URL..." th:field="*{url}" required />
+						<div class="d-flex align-items-center gap-3 flex-wrap">
+							<div>
+								<label for="url" class="d-block">Image URL: </label>
+								<input type="text" maxlength="2000" placeholder="Type the image URL..." th:field="*{url}" required />
+							</div>
 							<img th:if="*{id != 0}" th:src="*{url}" width="200" />
 						</div>
 						<ul th:if="${#fields.hasErrors('url')}" class="alert alert-danger list-unstyled mt-2">
@@ -47,9 +47,12 @@
 						</ul>
 					</div>
 					
-					<div class="my-4 me-3 d-inline-block" th:each="category : ${categories}" th:object="${category}">
-						<input type="checkbox" th:field="${photo.categories}" th:id="*{'category-' + id}" th:value="*{id}" />
-						<label th:for="${'category-' + category.id}">[[*{name}]]</label>
+					<div class="my-4">
+						<label class="d-block">Categories</label>
+						<div class="me-3 d-inline-block" th:each="category : ${categories}" th:object="${category}">
+							<input type="checkbox" th:field="${photo.categories}" th:id="*{'category-' + id}" th:value="*{id}" />
+							<label th:for="${'category-' + category.id}">[[*{name}]]</label>
+						</div>
 					</div>
 					
 					<div sec:authorize="hasAuthority('USER')" th:unless="*{hiddenBySuperadmin}" class="my-4">
@@ -75,8 +78,6 @@
 					<div sec:authorize="hasAuthority('USER')" th:if="*{hiddenBySuperadmin}" class="my-4">
 						<p class="my-0">You can't set the visibility of the image, since it has been disabled by the Admin</p>
 					</div>
-					
-					<br />
 					
 					<button class="btn btn-outline-dark" type="submit">[[${photo.id == 0 ? 'Insert' : 'Update'}]]</button>
 					
