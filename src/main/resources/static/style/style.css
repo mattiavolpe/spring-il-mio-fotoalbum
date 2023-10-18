@@ -24,7 +24,7 @@ main {
 	overflow-y: auto;
 }
 
-.card-body > .img_wrapper > img {
+.card-body .img_wrapper > img {
 	object-fit: cover;
 }
 
@@ -35,6 +35,11 @@ main {
 
 .card-body > .img_wrapper > .invisible_overlay:hover {
 	opacity: 0.4;
+}
+
+.card-footer .edit_icon,
+.card-footer .delete_icon {
+	cursor: pointer;
 }
 
 #single_image {

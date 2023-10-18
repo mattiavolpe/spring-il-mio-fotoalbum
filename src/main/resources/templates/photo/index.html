@@ -18,7 +18,7 @@
 					<label for="filter">Search</label>
 					<br />
 					<div id="search" class="d-flex flex-column align-items-start">
-						<input class="my-3 px-1 py-2 rounded border border-dark" type="text" name="filter" id="filter" placeholder="Type a filter..." th:value="${filter}">
+						<input class="my-3 px-1 py-2 rounded border border-dark" type="text" name="filter" id="filter" placeholder="Type a filter..." th:value="${filter}" />
 						<button class="btn btn-outline-dark px-3 py-2 rounded" type="submit">Search</button>
 					</div>
 				</form>
@@ -29,29 +29,57 @@
 				
 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 					<div th:each="photo : ${photos}" th:object="${photo}" class="col">
-						<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none">
-							<div class="card h-100 border-0">
-								<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
+						<div class="card h-100 border-0">
+							<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
+								<a th:href="@{/{id}(id=*{id})}" class="d-block h-100 text-decoration-none text-dark">
 									<div class="img_wrapper position-relative h-100">
-										<img th:src="*{url}" th:alt="*{title + ' image'}" class="h-100 w-100">
+										<img th:src="*{url}" th:alt="*{title + ' image'}" class="h-100 w-100" />
 										<div th:unless="*{visible}" class="invisible_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
 											<i class="fa-solid fa-eye-slash fa-2xl text-danger"></i>
 										</div>
 									</div>
-								</div>
-								<div class="card-footer border-0 bg-transparent pt-0 pb-3">
-									<h5 class="text-center m-0">
+								</a>
+							</div>
+							<div class="card-footer border-0 bg-transparent pt-0 pb-3 text-center">
+								<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none text-dark">
+									<h5 class="mb-3">
 										[[*{title}]]
 									</h5>
+								</a>
+								
+								<div class="d-flex align-items-center justify-content-center">
+									<a th:href="@{/edit/{id}(id=*{id})}" class="mx-2 text-decoration-none">
+										<i class="fa-solid fa-pen-to-square btn btn-outline-dark py-2 px-4 rounded-5 pointer edit_icon"></i>
+									</a>
 									
-									<form method="post" th:action="*{'/delete/' + id}">
-										<button type="submit">DELETE</button>
-									</form>
+									<!-- Button trigger modal -->
+									<button type="button" class="border-0 bg-transparent p-0 mx-2" data-bs-toggle="modal" th:data-bs-target="*{'#delete' + {id}}" th:title="*{'deleteToggler' + {id}}">
+									  <i class="fa-solid fa-trash btn btn-outline-danger py-2 px-4 rounded-5 pointer delete_icon"></i>
+									</button>
 									
-									
+									<!-- Modal -->
+									<div class="modal fade" th:id="*{'delete' + {id}}" tabindex="-1" th:aria-labelledby="*{'modalLabel' + {id}}" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h1 class="modal-title fs-5" th:id="*{'modalLabel' + {id}}">Delete confirmation</h1>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									      </div>
+									      <div class="modal-body">
+									        Are you sure you want to delete the photo "[[*{title}]]"?
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									        <form th:action="@{/delete/{id}(id=*{id})}" method="post">
+										        <button type="submit" class="btn btn-danger">Delete</button>
+									      	</form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 				
