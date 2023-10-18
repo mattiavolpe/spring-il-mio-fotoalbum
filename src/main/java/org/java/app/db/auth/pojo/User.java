@@ -2,9 +2,8 @@ package org.java.app.db.auth.pojo;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
 import org.java.app.db.pojo.Photo;
@@ -40,17 +39,17 @@ public class User implements UserDetails {
 	private String password;
 	
 	@OneToMany(mappedBy = "user")
-	private Set<Photo> photos;
+	private List<Photo> photos;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<Role> roles;
+	private List<Role> roles;
 	
 	public User() {}
 
 	public User(String username, String password, Role...roles) {
 		setUsername(username);
 		setPassword(password);
-		setRoles(new HashSet<Role>(Arrays.asList(roles)));
+		setRoles(Arrays.asList(roles));
 	}
 
 	public int getId() {
@@ -77,19 +76,19 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 	
-	public Set<Photo> getPhotos() {
+	public List<Photo> getPhotos() {
 		return photos;
 	}
 
-	public void setPhotos(Set<Photo> photos) {
+	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
 
-	public Set<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 

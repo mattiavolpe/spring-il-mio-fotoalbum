@@ -1,9 +1,8 @@
 package org.java.app.db.pojo;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,13 +24,13 @@ public class Category {
 	private String name;
 	
 	@ManyToMany(mappedBy = "categories")
-	private Set<Photo> photos;
+	private List<Photo> photos;
 	
 	public Category() {}
 	
 	public Category(String name, Photo...photos) {
 		setName(name);
-		setPhotos(new HashSet<Photo>(Arrays.asList(photos)));
+		setPhotos(Arrays.asList(photos));
 	}
 
 	public int getId() {
@@ -50,11 +49,11 @@ public class Category {
 		this.name = name;
 	}
 
-	public Set<Photo> getPhotos() {
+	public List<Photo> getPhotos() {
 		return photos;
 	}
 
-	public void setPhotos(Set<Photo> photos) {
+	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
 	

@@ -1,9 +1,8 @@
 package org.java.app.db.pojo;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
 import org.java.app.db.auth.pojo.User;
@@ -46,7 +45,7 @@ public class Photo {
 	private User user;
 	
 	@ManyToMany
-	private Set<Category> categories;
+	private List<Category> categories;
 	
 	public Photo() {}
 	
@@ -56,7 +55,7 @@ public class Photo {
 		setUrl(url);
 		setVisible(visible);
 		setUser(user);
-		setCategories(new HashSet<Category>(Arrays.asList(categories)));
+		setCategories(Arrays.asList(categories));
 	}
 
 	public int getId() {
@@ -107,11 +106,11 @@ public class Photo {
 		this.user = user;
 	}
 
-	public Set<Category> getCategories() {
+	public List<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(Set<Category> categories) {
+	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 	
