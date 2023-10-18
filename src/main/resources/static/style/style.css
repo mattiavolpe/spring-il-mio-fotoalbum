@@ -77,6 +77,10 @@ main {
 	max-height: 94svh;
 }
 
+.category_name_link:hover {
+	text-decoration: underline !important;
+}
+
 footer {
 	height: 48px;
 	box-shadow: 0 -0.5rem 1rem var(--shadow);
