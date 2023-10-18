@@ -42,4 +42,8 @@ public class PhotoService {
 	public List<Photo> filterByUserAndTitleOrDescription(User user, String title, String description) {
 		return photoRepo.findByUserAndTitleContainingOrUserAndDescriptionContaining(user, title, user, description);
 	}
+	
+	public void delete(Photo photo) {
+		photoRepo.delete(photo);
+	}
 }

@@ -43,6 +43,12 @@
 									<h5 class="text-center m-0">
 										[[*{title}]]
 									</h5>
+									
+									<form method="post" th:action="*{'/delete/' + id}">
+										<button type="submit">DELETE</button>
+									</form>
+									
+									
 								</div>
 							</div>
 						</a>
