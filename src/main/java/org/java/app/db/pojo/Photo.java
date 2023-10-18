@@ -2,6 +2,7 @@ package org.java.app.db.pojo;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
@@ -98,5 +99,26 @@ public class Photo {
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
+	}
+	
+	@Override
+	public String toString() {
+		return "[" + getId() + "] - " + getTitle() + "\n" + getDescription() + "\n" + getUrl() + "\n" + (getVisible() ? "Visible" : "Invisible") + "\n" + getCategories();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId());
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		
+		if (!(obj instanceof Photo)) return false;
+		
+		Photo extObj = (Photo) obj;
+		
+		return getId() == extObj.getId();
 	}
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="data:,">
+    
+    <title>Fragments</title>
+  </head>
+  
+  <body>
+		
+		<head th:fragment="pageHead(title)">
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    
+	    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+	    
+	    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.4.2/css/all.min.css}"/>
+	    
+	    <link rel="stylesheet" th:href="@{/style/style.css}" />
+	    
+	    <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}" crossorigin="anonymous" defer></script>
+	    
+	    <link rel="icon" href="data:,">
+	    
+	    <title>[[${title}]]</title>
+	  </head>
+		
+		<header th:fragment="header" class="shadow position-sticky mb-5 py-4" style="height: 152px;">
+			<div class="container position-relative h-100">
+				<div class="text-center position-absolute top-50 start-50 translate-middle">
+					<a href="/" class="text-danger text-decoration-none">
+						<img th:src="@{/img/logo.png}" alt="Site logo" height="104" />
+					</a>
+				</div>
+				<div class="position-absolute top-50 translate-middle-y" style="right: 12px;" sec:authorize="isAnonymous()">
+					<a href="/login" class="btn btn-success login">LogIn</a>
+					<a href="/login" class="btn btn-success login-mobile">
+						<i class="fa-regular fa-user"></i>
+					</a>
+				</div>
+				<div class="position-absolute top-50 translate-middle-y" style="right: 12px;" sec:authorize="hasAnyAuthority('Admin', 'User')">
+					<a href="/logout" class="btn btn-danger logout">
+						[[${#authentication.principal.username}]] - LogOut
+					</a>
+					<a href="/logout" class="btn btn-danger logout-mobile">
+						<i class="fa-solid fa-arrow-right-from-bracket"></i>
+					</a>
+				</div>
+			</div>
+		</header>
+    
+  </body>
+  
+</html>

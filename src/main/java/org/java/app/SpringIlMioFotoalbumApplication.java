@@ -1,5 +1,9 @@
 package org.java.app;
 
+import org.java.app.db.auth.pojo.Role;
+import org.java.app.db.auth.pojo.User;
+import org.java.app.db.auth.service.RoleService;
+import org.java.app.db.auth.service.UserService;
 import org.java.app.db.pojo.Category;
 import org.java.app.db.pojo.Photo;
 import org.java.app.db.service.CategoryService;
@@ -8,9 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -24,6 +35,22 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Role superadminRole = new Role("SUPERADMIN");
+		Role userRole = new Role("USER");
+		
+		roleService.saveRole(superadminRole);
+		roleService.saveRole(userRole);
+		
+		System.out.println("\n----------\nROLES SEEDED\n----------\n");
+		
+		User superadmin = new User("superadmin", new BCryptPasswordEncoder().encode("password"), superadminRole);
+		User user = new User("user", new BCryptPasswordEncoder().encode("password"), userRole);
+		
+		userService.saveUser(superadmin);
+		userService.saveUser(user);
+		
+		System.out.println("\n----------\nUSERS SEEDED\n----------\n");
 		
 		Category landscape = new Category("Landscape");
 		Category portrait = new Category("Portrait");
