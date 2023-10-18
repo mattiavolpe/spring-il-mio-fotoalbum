@@ -2,6 +2,7 @@ package org.java.app.db.service;
 
 import java.util.List;
 
+import org.java.app.db.auth.pojo.User;
 import org.java.app.db.auth.service.UserService;
 import org.java.app.db.pojo.Photo;
 import org.java.app.db.repo.PhotoRepo;
@@ -31,5 +32,13 @@ public class PhotoService {
 	
 	public List<Photo> findAllVisible() {
 		return photoRepo.findByVisible(true);
+	}
+	
+	public List<Photo> filterByTitleOrDescription(String title, String description) {
+		return photoRepo.findByTitleContainingOrDescriptionContaining(title, description);
+	}
+	
+	public List<Photo> filterByUserAndTitleOrDescription(User user, String title, String description) {
+		return photoRepo.findByUserAndTitleContainingOrUserAndDescriptionContaining(user, title, user, description);
 	}
 }

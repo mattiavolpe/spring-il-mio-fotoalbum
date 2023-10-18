@@ -12,4 +12,6 @@ import org.java.app.db.auth.pojo.User;
 public interface PhotoRepo extends JpaRepository<Photo, Integer> {
 	public List<Photo> findByVisible(Boolean visible);
 	public List<Photo> findByUser(User user);
+	public List<Photo> findByTitleContainingOrDescriptionContaining(String title, String description);
+	public List<Photo> findByUserAndTitleContainingOrUserAndDescriptionContaining(User user, String title, User user2, String description);
 }
