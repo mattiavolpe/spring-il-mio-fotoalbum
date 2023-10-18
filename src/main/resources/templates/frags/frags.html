@@ -35,7 +35,7 @@
 	    <title>[[${title}]]</title>
 	  </head>
 		
-		<header th:fragment="header" class="shadow position-sticky top-0 z-1 bg-white mb-5 py-4" style="height: 152px;">
+		<header th:fragment="header" class="position-sticky top-0 z-1 bg-white">
 			<div class="container position-relative h-100">
 				<div class="text-center position-absolute top-50 start-50 translate-middle">
 					<a href="/" class="text-danger text-decoration-none">
@@ -52,6 +52,14 @@
 				</div>
 			</div>
 		</header>
+		
+		<footer th:fragment="footer" class="position-sticky bottom-0 z-1 w-100 bg-white">
+			<div class="container d-flex align-items-center justify-content-center h-100">
+				<h5 class="text-center mb-0">
+					Made with <span class="text-danger">&hearts;</span> by Mattia Volpe
+				</h5>
+			</div>
+		</footer>
     
   </body>
   

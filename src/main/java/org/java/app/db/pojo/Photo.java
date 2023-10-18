@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -39,8 +40,13 @@ public class Photo {
 	@Column(columnDefinition = "text", nullable = false)
 	private String url;
 	
+	@Column(nullable = false)
 	private Boolean visible;
 	
+	@Column(nullable = false)
+	private Boolean hiddenBySuperadmin;
+	
+	@JoinColumn(nullable = false)
 	@ManyToOne
 	private User user;
 	
@@ -49,11 +55,12 @@ public class Photo {
 	
 	public Photo() {}
 	
-	public Photo(String title, String description, String url, Boolean visible, User user, Category...categories) {
+	public Photo(String title, String description, String url, Boolean visible, Boolean hiddenBySuperadmin, User user, Category...categories) {
 		setTitle(title);
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+		setHiddenBySuperadmin(hiddenBySuperadmin);
 		setUser(user);
 		setCategories(Arrays.asList(categories));
 	}
@@ -88,6 +95,14 @@ public class Photo {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Boolean getHiddenBySuperadmin() {
+		return hiddenBySuperadmin;
+	}
+
+	public void setHiddenBySuperadmin(Boolean hiddenBySuperadmin) {
+		this.hiddenBySuperadmin = hiddenBySuperadmin;
 	}
 
 	public Boolean getVisible() {

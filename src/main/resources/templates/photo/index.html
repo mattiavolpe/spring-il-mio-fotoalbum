@@ -7,34 +7,49 @@
 		
 		<header th:replace="~{frags/frags :: header}"></header>
 		
-		<div class="container mb-5">
-			
-			<h1 sec:authorize="hasAuthority('SUPERADMIN')" class="text-center mb-4">SITE PHOTOS</h1>
-			<h1 sec:authorize="hasAuthority('USER')" class="text-center mb-4">YOUR PHOTOS</h1>
-			
-			<form th:if="${photos.size > 0}">
-				<label for="filter">Search</label>
-				<br />
-				<div class="d-flex align-items-center gap-3">
-					<input type="text" name="filter" id="filter" placeholder="Type a filter..." th:value="${filter}">
-					<button class="btn btn-outline-dark" type="submit">Search</button>
-				</div>
-			</form>
-			
-			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-				<div th:each="photo : ${photos}" th:object="${photo}" class="col">
-					<div class="card h-100 border-0">
-						<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
-							<img th:src="*{url}" class="h-100 w-100">
-						</div>
-						<div class="card-footer border-0 bg-transparent pt-0 pb-3">
-							<h5 class="text-center m-0">[[*{title}]]</h5>
-						</div>
+		<main class="py-5">
+		
+			<div class="container">
+				
+				<h1 sec:authorize="hasAuthority('SUPERADMIN')" class="text-center mb-4">ALL USERS PHOTOS</h1>
+				<h1 sec:authorize="hasAuthority('USER')" class="text-center mb-4">YOUR PHOTOS</h1>
+				
+				<form th:if="${photos.size > 0}" class="mb-4">
+					<label for="filter">Search</label>
+					<br />
+					<div id="search" class="d-flex flex-column align-items-start">
+						<input class="my-3 px-1 py-2 rounded border border-dark" type="text" name="filter" id="filter" placeholder="Type a filter..." th:value="${filter}">
+						<button class="btn btn-outline-dark px-3 py-2 rounded" type="submit">Search</button>
+					</div>
+				</form>
+				
+				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+					<div th:each="photo : ${photos}" th:object="${photo}" class="col">
+						<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none">
+							<div class="card h-100 border-0">
+								<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
+									<div class="img_wrapper position-relative h-100">
+										<img th:src="*{url}" th:alt="*{title + ' image'}" class="h-100 w-100">
+										<div th:unless="*{visible}" class="invisible_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+											<i class="fa-solid fa-eye-slash fa-2xl text-danger"></i>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer border-0 bg-transparent pt-0 pb-3">
+									<h5 class="text-center m-0">
+										[[*{title}]]
+									</h5>
+								</div>
+							</div>
+						</a>
 					</div>
 				</div>
+				
 			</div>
 			
-		</div>
+		</main>
+		
+		<footer th:replace="~{frags/frags :: footer}"></footer>
     
   </body>
   

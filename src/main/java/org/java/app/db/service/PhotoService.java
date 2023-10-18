@@ -1,6 +1,7 @@
 package org.java.app.db.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.java.app.db.auth.pojo.User;
 import org.java.app.db.pojo.Photo;
@@ -20,6 +21,10 @@ public class PhotoService {
 	
 	public List<Photo> findAll() {
 		return photoRepo.findAll();
+	}
+	
+	public Optional<Photo> findById(int id) {
+		return photoRepo.findById(id);
 	}
 	
 	public List<Photo> findUserPhotos(User user) {

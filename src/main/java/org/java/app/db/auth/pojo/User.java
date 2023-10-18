@@ -91,6 +91,17 @@ public class User implements UserDetails {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+	
+	public Boolean checkIfIsSuperAdmin() {
+		List<Role> roles = getRoles();
+		
+		for (Role role : roles) {
+			if (role.getName().equals("SUPERADMIN"))
+				return true;
+		}
+		
+		return false;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

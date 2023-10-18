@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head th:replace="~{frags/frags :: pageHead('Photos')}"></head>
+  
+  <body th:object="${photo}">
+		
+		<header th:replace="~{frags/frags :: header}"></header>
+		
+		<main class="py-5">
+		
+			<div class="container">
+				
+				<h1 class="text-center mb-4">[[*{title}]]</h1>
+				
+				<div class="bg-body-secondary mb-4 p-3 rounded">
+					<h4 sec:authorize="hasAuthority('SUPERADMIN')" class="mb-3">
+						Owner:
+						<span class="fst-italic" th:class="*{user.checkIfIsSuperAdmin ? 'text-info' : 'text-secondary'}">[[*{user.username}]]</spa>
+					</h4>
+					
+					<h4 class="m-0">
+						Publicly visible:
+						<span th:if="*{visible}" class="fst-italic text-success">
+							Yes <i class="fa-solid fa-eye"></i>
+						</span>
+						<span th:unless="*{visible}" class="fst-italic text-danger">
+							No <i class="fa-solid fa-eye-slash"></i>
+						</span>
+					</h4>
+				</div>
+				
+				<div class="position-relative d-flex align-items-center justify-content-center" id="single_image_wrapper">
+					<img th:src="*{url}" th:alt="*{title + ' image'}" class="img-fluid" id="single_image"/>
+					<div id="zoom_icon_wrapper" class="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center p-5 rounded-circle opacity-0">
+						<i class="fa-solid fa-circle-plus fa-2xl"></i>				
+					</div>
+				</div>
+				
+				<div class="d-none align-items-center justify-content-center position-fixed top-0 start-0 z-2" id="full_screen_overlay">
+					<img th:src="*{url}" />
+				</div>
+				
+				<h3 class="mt-4 mb-0 text-center">[[*{description}]]</h3>
+				
+			</div>
+			
+		</main>
+		
+		<footer th:replace="~{frags/frags :: footer}"></footer>
+		
+		<script th:src="@{/js/photo-show-script.js}"></script>
+    
+  </body>
+  
+</html>
