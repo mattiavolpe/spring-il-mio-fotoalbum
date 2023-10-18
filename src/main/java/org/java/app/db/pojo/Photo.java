@@ -2,7 +2,6 @@ package org.java.app.db.pojo;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Locale.Category;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
