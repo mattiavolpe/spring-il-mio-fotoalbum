@@ -15,8 +15,8 @@ public class PhotoService {
 	@Autowired
 	private PhotoRepo photoRepo;
 	
-	public void savePhoto(Photo photo) {
-		photoRepo.save(photo);
+	public Photo savePhoto(Photo photo) {
+		return photoRepo.save(photo);
 	}
 	
 	public List<Photo> findAll() {

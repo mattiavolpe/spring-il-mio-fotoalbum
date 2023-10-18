@@ -26,6 +26,7 @@ public class Photo {
 	private int id;
 	
 	@NotBlank(message = "The title is required")
+	@Length(max = 255)
 	@Column(unique = true, nullable = false)
 	private String title;
 	
@@ -46,8 +47,8 @@ public class Photo {
 	@Column(nullable = false)
 	private Boolean hiddenBySuperadmin;
 	
-	@JoinColumn(nullable = false)
 	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
 	@ManyToMany
@@ -131,7 +132,7 @@ public class Photo {
 	
 	@Override
 	public String toString() {
-		return "[" + getId() + "] - " + getTitle() + "\n" + getDescription() + "\n" + getUrl() + "\n" + (getVisible() ? "Visible" : "Invisible") + "\n" + getCategories();
+		return "[" + getId() + "] - " + getTitle() + "\nDescription: " + getDescription() + "\nUrl: " + getUrl() + "\nVisible: " + getVisible() + "\n" + getCategories();
 	}
 	
 	@Override

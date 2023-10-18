@@ -23,6 +23,10 @@
 					</div>
 				</form>
 				
+				<div class="mb-4">
+					<a href="/create" class="btn btn-outline-dark">Insert a new photo</a>
+				</div>
+				
 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 					<div th:each="photo : ${photos}" th:object="${photo}" class="col">
 						<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none">

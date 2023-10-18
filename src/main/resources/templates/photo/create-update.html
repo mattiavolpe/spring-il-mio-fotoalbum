@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head th:replace="~{frags/frags :: pageHead('Photos')}"></head>
+  
+  <body th:object="${photo}">
+		
+		<header th:replace="~{frags/frags :: header}"></header>
+		
+		<main class="py-5">
+		
+			<div class="container">
+				
+				<form method="post">
+					<!--/*
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					*/-->
+					
+					<div class="my-4">
+						<div class="d-flex align-items-center gap-3">
+							<label for="title" class="w-25">Title: </label>
+							<input type="text" maxlength="255" placeholder="Type the image title..." th:field="*{title}" required />
+						</div>
+						<ul th:if="${#fields.hasErrors('title')}" class="alert alert-danger list-unstyled mt-2">
+							<li th:each="error : ${#fields.errors('title')}">[[${error}]]</li>
+						</ul>
+					</div>
+					
+					<div class="my-4">
+						<div class="d-flex align-items-center gap-3">
+							<label for="description" class="w-25">Description: </label>
+							<input type="text" maxlength="2000" placeholder="Type the image description..." th:field="*{description}" />
+						</div>
+						<ul th:if="${#fields.hasErrors('description')}" class="alert alert-danger list-unstyled mt-2">
+							<li th:each="error : ${#fields.errors('description')}">[[${error}]]</li>
+						</ul>
+					</div>
+					
+					<div class="my-4">
+						<div class="d-flex align-items-center gap-3">
+							<label for="url" class="w-25">Image URL: </label>
+							<input type="text" maxlength="2000" placeholder="Type the image URL..." th:field="*{url}" required />
+							<img th:if="*{id != 0}" th:src="*{url}" width="200" />
+						</div>
+						<ul th:if="${#fields.hasErrors('url')}" class="alert alert-danger list-unstyled mt-2">
+							<li th:each="error : ${#fields.errors('url')}">[[${error}]]</li>
+						</ul>
+					</div>
+					
+					<div class="my-4 me-3 d-inline-block" th:each="category : ${categories}" th:object="${category}">
+						<input type="checkbox" th:field="${photo.categories}" th:id="*{'category-' + id}" th:value="*{id}" />
+						<label th:for="${'category-' + category.id}">[[*{name}]]</label>
+					</div>
+					
+					<div class="my-4">
+						<div class="d-flex align-items-center gap-3">
+							<label for="visible1">Visible: </label>
+							<input type="checkbox" th:field="*{visible}" />
+						</div>
+						<ul th:if="${#fields.hasErrors('visible')}" class="alert alert-danger list-unstyled mt-2">
+							<li th:each="error : ${#fields.errors('visible')}">[[${error}]]</li>
+						</ul>
+					</div>
+					
+					<br />
+					
+					<button class="btn btn-outline-dark" type="submit">[[${photo.id == 0 ? 'Insert' : 'Update'}]]</button>
+					
+				</form>
+				
+			</div>
+			
+		</main>
+		
+		<footer th:replace="~{frags/frags :: footer}"></footer>
+    
+  </body>
+  
+</html>
