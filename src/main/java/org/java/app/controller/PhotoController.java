@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
@@ -60,9 +61,8 @@ public class PhotoController {
 			return "redirect:/";
 		
 		Photo photo = optPhoto.get();
-		int userId = user.getId();
 		
-		if (userId != 1 && userId != photo.getUser().getId())
+		if (!checkPhotoOwnership(user, photo))
 			return "redirect:/";
 		
 		model.addAttribute("photo", photo);
@@ -75,6 +75,7 @@ public class PhotoController {
 		Photo photo = new Photo();
 		
 		photo.setVisible(true);
+		photo.setHiddenBySuperadmin(false);
 		
 		model.addAttribute("photo", photo);
 		model.addAttribute("categories", categoryService.findAll());
@@ -96,5 +97,66 @@ public class PhotoController {
 		Photo savedPhoto = photoService.savePhoto(photo);
 		
 		return "redirect:/" + savedPhoto.getId();
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable int id, Model model, Authentication authentication) {
+		User user = (User) authentication.getPrincipal();
+		
+		Optional<Photo> optPhoto = photoService.findById(id);
+		
+		if (optPhoto.isEmpty())
+			return "redirect:/";
+		
+		Photo photo = optPhoto.get();
+		
+		if (!checkPhotoOwnership(user, photo))
+			return "redirect:/";
+		
+		model.addAttribute("photo", photo);
+		model.addAttribute("categories", categoryService.findAll());
+		
+		return "/photo/create-update";
+	}
+	
+	@PostMapping("/edit/{id}")
+	public String update(@PathVariable int id, @Valid @ModelAttribute Photo photo, BindingResult bindingResult, Model model, Authentication authentication) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("categories", categoryService.findAll());
+			
+			return "/photo/create-update";
+		}
+		
+		Optional<Photo> optPhoto = photoService.findById(id);
+		
+		if (optPhoto.isEmpty())
+			return "redirect:/";
+		
+		User user = optPhoto.get().getUser();
+		
+		User authUser = (User) authentication.getPrincipal();
+
+		photo.setUser(user);
+		
+		if (authUser.getUsername().equals("superadmin") && !photo.getVisible())
+			photo.setHiddenBySuperadmin(true);
+		else if (!authUser.getUsername().equals("superadmin") && photo.getVisible() == null) {
+			photo.setHiddenBySuperadmin(true);
+			photo.setVisible(false);
+		} else
+			photo.setHiddenBySuperadmin(false);
+		
+		Photo savedPhoto = photoService.savePhoto(photo);
+		
+		return "redirect:/" + savedPhoto.getId();
+	}
+	
+	private Boolean checkPhotoOwnership(User user, Photo photo) {
+		int userId = user.getId();
+		
+		if (userId != 1 && userId != photo.getUser().getId())
+			return false;
+		
+		return true;
 	}
 }

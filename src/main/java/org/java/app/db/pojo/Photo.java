@@ -130,6 +130,10 @@ public class Photo {
 		this.categories = categories;
 	}
 	
+	public void addCategory(Category category) {
+		getCategories().add(category);
+	}
+	
 	@Override
 	public String toString() {
 		return "[" + getId() + "] - " + getTitle() + "\nDescription: " + getDescription() + "\nUrl: " + getUrl() + "\nVisible: " + getVisible() + "\n" + getCategories();

@@ -52,7 +52,7 @@
 						<label th:for="${'category-' + category.id}">[[*{name}]]</label>
 					</div>
 					
-					<div class="my-4">
+					<div sec:authorize="hasAuthority('USER')" th:unless="*{hiddenBySuperadmin}" class="my-4">
 						<div class="d-flex align-items-center gap-3">
 							<label for="visible1">Visible: </label>
 							<input type="checkbox" th:field="*{visible}" />
@@ -60,6 +60,20 @@
 						<ul th:if="${#fields.hasErrors('visible')}" class="alert alert-danger list-unstyled mt-2">
 							<li th:each="error : ${#fields.errors('visible')}">[[${error}]]</li>
 						</ul>
+					</div>
+					
+					<div sec:authorize="hasAuthority('SUPERADMIN')" class="my-4">
+						<div class="d-flex align-items-center gap-3">
+							<label for="visible1">Visible: </label>
+							<input type="checkbox" th:field="*{visible}" />
+						</div>
+						<ul th:if="${#fields.hasErrors('visible')}" class="alert alert-danger list-unstyled mt-2">
+							<li th:each="error : ${#fields.errors('visible')}">[[${error}]]</li>
+						</ul>
+					</div>
+					
+					<div sec:authorize="hasAuthority('USER')" th:if="*{hiddenBySuperadmin}" class="my-4">
+						<p class="my-0">You can't set the visibility of the image, since it has been disabled by the Admin</p>
 					</div>
 					
 					<br />
