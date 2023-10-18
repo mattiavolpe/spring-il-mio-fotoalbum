@@ -16,9 +16,10 @@ public class AuthConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeHttpRequests()
-		.requestMatchers("/**").permitAll()
+		.requestMatchers("/**").hasAnyAuthority("SUPERADMIN", "USER")
+		.requestMatchers("/login").permitAll()
 		.and().formLogin().defaultSuccessUrl("/")
-		.and().logout(logout -> logout.logoutSuccessUrl("/"));
+		.and().logout(logout -> logout.logoutSuccessUrl("/login"));
 		
 		return http.build();
 	}

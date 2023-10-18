@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
+import org.java.app.db.auth.pojo.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -40,16 +42,20 @@ public class Photo {
 	
 	private Boolean visible;
 	
+	@ManyToOne
+	private User user;
+	
 	@ManyToMany
 	private Set<Category> categories;
 	
 	public Photo() {}
 	
-	public Photo(String title, String description, String url, Boolean visible, Category...categories) {
+	public Photo(String title, String description, String url, Boolean visible, User user, Category...categories) {
 		setTitle(title);
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+		setUser(user);
 		setCategories(new HashSet<Category>(Arrays.asList(categories)));
 	}
 
@@ -91,6 +97,14 @@ public class Photo {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Set<Category> getCategories() {

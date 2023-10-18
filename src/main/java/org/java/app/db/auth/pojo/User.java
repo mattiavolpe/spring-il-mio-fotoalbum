@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.Length;
+import org.java.app.db.pojo.Photo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +19,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -36,6 +38,9 @@ public class User implements UserDetails {
 	@NotBlank
 	@Length(min = 3, max = 100)
 	private String password;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Photo> photos;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
@@ -70,6 +75,14 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Set<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Set<Photo> photos) {
+		this.photos = photos;
 	}
 
 	public Set<Role> getRoles() {

@@ -68,12 +68,12 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		
 		System.out.println("\n----------\nCATEGORIES SEEDED\n----------\n");
 		
-		Photo photo1 = new Photo("Mountain and lake photo", "A lake mirroring the mountains", "https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg", true, landscape);
-		Photo photo2 = new Photo("Middle-age man", "A middle-age man with blue eyes, white hairs and a long white beard", "https://images.pexels.com/photos/4556737/pexels-photo-4556737.jpeg", true, portrait);
-		Photo photo3 = new Photo("Milky Way through the trees", "A view of the Milky Way through the leafs of forest trees", "https://images.pexels.com/photos/1327786/pexels-photo-1327786.jpeg", true, landscape, night);
-		Photo photo4 = new Photo("Colorful chameleon", "A colorful chameleon with a blurred background", "https://images.pexels.com/photos/567540/pexels-photo-567540.jpeg", true, animal);
-		Photo photo5 = new Photo("Salmon sushi rolls", "A plate full of salmon sushi rolls", "https://images.pexels.com/photos/3620705/pexels-photo-3620705.jpeg", true, food);
-		Photo photo6 = new Photo("Wedding bouquet", "Husband and wife hands holding a wedding bouquet", "https://images.pexels.com/photos/1730877/pexels-photo-1730877.jpeg", true, wedding);
+		Photo photo1 = new Photo("Mountain and lake photo", "A lake mirroring the mountains", "https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg", true, superadmin, landscape);
+		Photo photo2 = new Photo("Middle-age man", "A middle-age man with blue eyes, white hairs and a long white beard", "https://images.pexels.com/photos/4556737/pexels-photo-4556737.jpeg", true, superadmin, portrait);
+		Photo photo3 = new Photo("Milky Way through the trees", "A view of the Milky Way through the leafs of forest trees", "https://images.pexels.com/photos/1327786/pexels-photo-1327786.jpeg", true, superadmin, landscape, night);
+		Photo photo4 = new Photo("Colorful chameleon", "A colorful chameleon with a blurred background", "https://images.pexels.com/photos/567540/pexels-photo-567540.jpeg", true, superadmin, animal);
+		Photo photo5 = new Photo("Salmon sushi rolls", "A plate full of salmon sushi rolls", "https://images.pexels.com/photos/3620705/pexels-photo-3620705.jpeg", true, superadmin, food);
+		Photo photo6 = new Photo("Wedding bouquet", "Husband and wife hands holding a wedding bouquet", "https://images.pexels.com/photos/1730877/pexels-photo-1730877.jpeg", true, superadmin, wedding);
 		
 		photoService.savePhoto(photo1);
 		photoService.savePhoto(photo2);
