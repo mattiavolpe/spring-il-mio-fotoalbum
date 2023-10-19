@@ -1,0 +1,100 @@
+@use "./partials/_variables.scss" as *;
+
+body {
+	font-family: 'Young Serif', serif !important;
+
+  header {
+    height: 128px;
+    box-shadow: 0 0.5rem 1rem $shadow;
+
+    .login {
+      display: none;
+    }
+  }
+}
+
+main {
+	height: calc(100vh - 128px - 48px);
+	height: calc(100svh - 128px - 48px);
+	overflow-y: auto;
+}
+
+.card-body .img_wrapper > img {
+	object-fit: cover;
+}
+
+.card-body .img_wrapper > .invisible_overlay {
+	background-color: $overlay-dark;
+	transition: 0.3s;
+}
+
+.card-body .img_wrapper > .invisible_overlay:hover {
+	opacity: 0.4;
+}
+
+.card-footer .edit_icon,
+.card-footer .delete_icon {
+	cursor: pointer;
+}
+
+#single_image {
+	max-height: calc(100vh - 128px - 96px - 48px - 24px - 105px - 24px - 48px);
+	max-height: calc(100svh - 128px - 96px - 48px - 24px - 105px - 24px - 48px);
+	cursor: pointer;
+}
+
+#zoom_icon_wrapper {
+	transition: 0.3s;
+}
+
+#single_image_wrapper:has(img:hover) #zoom_icon_wrapper,
+#zoom_icon_wrapper:hover {
+	opacity: 1 !important;
+	cursor: pointer;
+}
+
+#zoom_icon_wrapper {
+	width: 40px;
+	aspect-ratio: 1 / 1;
+	background-color: $overlay-light;
+}
+
+#full_screen_overlay {
+	width: 100vw;
+	height: 100vh;
+	height: 100svh;
+	background-color: $overlay-darker;
+}
+
+#full_screen_overlay > img {
+	max-width: 94%;
+	max-height: 94vh;
+	max-height: 94svh;
+}
+
+.category_name_link:hover {
+	text-decoration: underline !important;
+}
+
+footer {
+	height: 48px;
+	box-shadow: 0 -0.5rem 1rem $shadow;
+}
+
+@media screen and (min-width: 768px) {
+	header {
+    .login {
+      display: inline-block !important;
+    }
+
+    .login-mobile {
+      display: none !important;
+    }
+	}
+		
+	#search {
+		flex-direction: row !important;
+		align-items: center !important;
+		gap: 16px;
+	}
+}

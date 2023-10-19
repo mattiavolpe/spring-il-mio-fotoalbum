@@ -1,6 +1,6 @@
 package org.java.app.api.controller;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.java.app.db.pojo.Message;
@@ -40,7 +40,7 @@ public class PhotoRestController {
 	
 	@PostMapping
 	public ResponseEntity<Boolean> sendMessage(@RequestBody Message message) {
-		message.setDate(LocalDate.now());
+		message.setDate(LocalDateTime.now());
 		messageService.saveMessage(message);
 		
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);

@@ -1,6 +1,7 @@
 package org.java.app.db.pojo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -20,7 +21,7 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private LocalDate date;
+	private LocalDateTime date;
 	
 	@NotBlank
 	@Email
@@ -35,7 +36,7 @@ public class Message {
 	
 	public Message() {}
 
-	public Message(LocalDate date, String email, String content) {
+	public Message(LocalDateTime date, String email, String content) {
 		setDate(date);
 		setEmail(email);
 		setContent(content);
@@ -49,11 +50,11 @@ public class Message {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
