@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head th:replace="~{frags/frags :: pageHead('Categories')}"></head>
+  
+  <body th:object="${category}">
+		
+		<header th:replace="~{frags/frags :: header}"></header>
+		
+		<main class="py-5">
+		
+			<div class="container">
+				
+				<h1 class="text-center mb-0">[[*{id == 0 ? 'NEW CATEGORY' : 'EDIT "' + {name} + '"'}]]</h1>
+				
+				<form method="post">
+					<!--/*
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					*/-->
+					
+					<div class="my-4">
+						<label for="name" class="d-block">Name: </label>
+						<input type="text" maxlength="255" placeholder="Type the category name..." th:field="*{name}" required />
+						<ul th:if="${#fields.hasErrors('name')}" class="alert alert-danger list-unstyled mt-2">
+							<li th:each="error : ${#fields.errors('name')}">[[${error}]]</li>
+						</ul>
+					</div>
+					
+					<div class="my-4">
+						<label class="d-block">Photos</label>
+						<div class="me-3 d-inline-block" th:each="photo : ${photos}" th:object="${photo}">
+							<input type="checkbox" th:field="${category.photos}" th:id="*{'photo-' + id}" th:value="*{id}" />
+							<label th:for="${'photo-' + photo.id}">[[*{title}]]</label>
+						</div>
+					</div>
+					
+					<button class="btn btn-outline-dark" type="submit">[[${category.id == 0 ? 'Insert' : 'Update'}]]</button>
+					
+				</form>
+				
+			</div>
+			
+		</main>
+		
+		<footer th:replace="~{frags/frags :: footer}"></footer>
+    
+  </body>
+  
+</html>

@@ -1,10 +1,11 @@
 package org.java.app.db.repo;
 
+import java.util.List;
+
+import org.java.app.db.auth.pojo.User;
 import org.java.app.db.pojo.Photo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import java.util.List;
-import org.java.app.db.auth.pojo.User;
 
 
 

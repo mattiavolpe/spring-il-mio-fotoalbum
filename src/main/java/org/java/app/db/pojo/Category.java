@@ -57,6 +57,18 @@ public class Category {
 		this.photos = photos;
 	}
 	
+	public boolean hasPhoto(Photo photo) {
+		if (getPhotos() == null) return false;
+		
+		for (Photo p : getPhotos()) {
+			if (p.getId() == photo.getId()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		return "[" + getId() + "] - " + getName();

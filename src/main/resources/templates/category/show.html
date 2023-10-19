@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   
-  <head th:replace="~{frags/frags :: pageHead('Photos')}"></head>
+  <head th:replace="~{frags/frags :: pageHead(${category.name})}"></head>
   
-  <body>
+  <body th:object="${category}">
 		
 		<header th:replace="~{frags/frags :: header}"></header>
 		
@@ -11,25 +11,7 @@
 		
 			<div class="container">
 				
-				<h1 sec:authorize="hasAuthority('SUPERADMIN')" class="text-center mb-4">ALL USERS PHOTOS</h1>
-				<h1 sec:authorize="hasAuthority('USER')" class="text-center mb-4">YOUR PHOTOS</h1>
-				
-				<form th:if="${photos.size > 0}" class="mb-4">
-					<label for="filter">Search</label>
-					<br />
-					<div id="search" class="d-flex flex-column align-items-start">
-						<input class="my-3 px-1 py-2 rounded border border-dark" type="text" name="filter" id="filter" placeholder="Type a filter..." th:value="${filter}" />
-						<button class="btn btn-outline-dark px-3 py-2 rounded" type="submit">Search</button>
-					</div>
-				</form>
-				
-				<div class="mb-4">
-					<a href="/create" class="btn btn-outline-dark">Insert a new photo</a>
-				</div>
-				
-				<div class="mb-4">
-					<a href="/categories" class="btn btn-outline-dark">Watch the categories</a>
-				</div>
+				<h1 class="text-center mb-4">CATEGORY: [[*{name}]]</h1>
 				
 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 					<div th:each="photo : ${photos}" th:object="${photo}" class="col">

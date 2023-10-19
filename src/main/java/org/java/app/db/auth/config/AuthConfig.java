@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
 @Configuration
 public class AuthConfig {
@@ -16,8 +17,10 @@ public class AuthConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeHttpRequests()
-		.requestMatchers("/**").hasAnyAuthority("SUPERADMIN", "USER")
 		.requestMatchers("/login").permitAll()
+		.requestMatchers("/categories/create").hasAuthority("SUPERADMIN")
+		.requestMatchers("/categories/edit/**").hasAuthority("SUPERADMIN")
+		.requestMatchers("/**").hasAnyAuthority("SUPERADMIN", "USER")
 		.and().formLogin().defaultSuccessUrl("/")
 		.and().logout(logout -> logout.logoutSuccessUrl("/login"));
 		
