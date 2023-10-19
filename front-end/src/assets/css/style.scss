@@ -2,39 +2,43 @@
 
 body {
 	font-family: 'Young Serif', serif !important;
+  background-color: #1e1e1e !important;
 
   header {
     height: 128px;
     box-shadow: 0 0.5rem 1rem $shadow;
+    background-color: #1e1e1e !important;
 
     .login {
       display: none;
     }
   }
-}
 
-main {
-	height: calc(100vh - 128px - 48px);
-	height: calc(100svh - 128px - 48px);
-	overflow-y: auto;
-}
+  main {
+    height: calc(100vh - 128px - 48px);
+    height: calc(100svh - 128px - 48px);
+    overflow-y: auto;
 
-.card-body .img_wrapper > img {
-	object-fit: cover;
-}
+    #search {
+      input {
+        background-color: #1e1e1e;
+      }
+    }
 
-.card-body .img_wrapper > .invisible_overlay {
-	background-color: $overlay-dark;
-	transition: 0.3s;
-}
+    .card {
+      background-color: #1e1e1e !important;
 
-.card-body .img_wrapper > .invisible_overlay:hover {
-	opacity: 0.4;
-}
+      .card-body .img_wrapper > img {
+        object-fit: cover;
+      }
+    }
+  }
 
-.card-footer .edit_icon,
-.card-footer .delete_icon {
-	cursor: pointer;
+  footer {
+    height: 48px;
+    box-shadow: 0 -0.5rem 1rem $shadow;
+    background-color: #1e1e1e !important;
+  }
 }
 
 #single_image {
@@ -74,11 +78,6 @@ main {
 
 .category_name_link:hover {
 	text-decoration: underline !important;
-}
-
-footer {
-	height: 48px;
-	box-shadow: 0 -0.5rem 1rem $shadow;
 }
 
 @media screen and (min-width: 768px) {
