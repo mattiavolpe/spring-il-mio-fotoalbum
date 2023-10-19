@@ -20,4 +20,8 @@ public class CategoryService {
 	public List<Category> findAll() {
 		return categoryRepo.findAll();
 	}
+	
+	public List<Category> filterByName(String name) {
+		return categoryRepo.findByNameContaining(name);
+	}
 }

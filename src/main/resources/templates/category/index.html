@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   
-  <head th:replace="~{frags/frags :: pageHead('Photos')}"></head>
+  <head th:replace="~{frags/frags :: pageHead('Categories')}"></head>
   
   <body>
 		
@@ -11,10 +11,9 @@
 		
 			<div class="container">
 				
-				<h1 sec:authorize="hasAuthority('SUPERADMIN')" class="text-center mb-4">ALL USERS PHOTOS</h1>
-				<h1 sec:authorize="hasAuthority('USER')" class="text-center mb-4">YOUR PHOTOS</h1>
+				<h1 class="text-center mb-4">Categories</h1>
 				
-				<form th:if="${photos.size > 0}" class="mb-4">
+				<form th:if="${categories.size > 0}" class="mb-4">
 					<label for="filter">Search</label>
 					<br />
 					<div id="search" class="d-flex flex-column align-items-start">
@@ -23,36 +22,19 @@
 					</div>
 				</form>
 				
-				<div class="mb-4">
-					<a href="/create" class="btn btn-outline-dark">Insert a new photo</a>
-				</div>
-				
-				<div class="mb-4">
-					<a href="/categories/" class="btn btn-outline-dark">Watch the categories</a>
+				<div sec:authorize="hasAuthority('SUPERADMIN')" class="mb-4">
+					<a href="/categories/create" class="btn btn-outline-dark">Insert a new category</a>
 				</div>
 				
 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-					<div th:each="photo : ${photos}" th:object="${photo}" class="col">
+					<div th:each="category : ${categories}" th:object="${category}" class="col">
 						<div class="card h-100 border-0">
 							<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
-								<a th:href="@{/{id}(id=*{id})}" class="d-block h-100 text-decoration-none text-dark">
-									<div class="img_wrapper position-relative h-100">
-										<img th:src="*{url}" th:alt="*{title + ' image'}" class="h-100 w-100" />
-										<div th:unless="*{visible}" class="invisible_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-											<i class="fa-solid fa-eye-slash fa-2xl text-danger"></i>
-										</div>
-									</div>
-								</a>
+								<a th:href="@{/categories/{id}(id=*{id})}" class="d-block h-100 text-decoration-none text-dark">[[*{name}]]</a>
 							</div>
-							<div class="card-footer border-0 bg-transparent pt-0 pb-3 text-center">
-								<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none text-dark">
-									<h5 class="mb-3">
-										[[*{title}]]
-									</h5>
-								</a>
-								
+							<div sec:authorize="hasAuthority('SUPERADMIN')" class="card-footer border-0 bg-transparent pt-0 pb-3 text-center">								
 								<div class="d-flex align-items-center justify-content-center">
-									<a th:href="@{/edit/{id}(id=*{id})}" class="mx-2 text-decoration-none">
+									<a th:href="@{/categories/edit/{id}(id=*{id})}" class="mx-2 text-decoration-none">
 										<i class="fa-solid fa-pen-to-square btn btn-outline-dark py-2 px-4 rounded-5 pointer edit_icon"></i>
 									</a>
 									
@@ -70,11 +52,11 @@
 									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									      </div>
 									      <div class="modal-body">
-									        Are you sure you want to delete the photo "[[*{title}]]"?
+									        Are you sure you want to delete the category "[[*{name}]]"?
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									        <form th:action="@{/delete/{id}(id=*{id})}" method="post">
+									        <form th:action="@{/categories/delete/{id}(id=*{id})}" method="post">
 										        <button type="submit" class="btn btn-danger">Delete</button>
 									      	</form>
 									      </div>
