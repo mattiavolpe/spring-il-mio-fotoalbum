@@ -2,6 +2,7 @@ package org.java.app.api.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.java.app.db.pojo.Message;
 import org.java.app.db.pojo.Photo;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,21 @@ public class PhotoRestController {
 				: photoService.filterByVisibleAndTitleOrDescription(filter);
 		
 		return new ResponseEntity<List<Photo>>(photos, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Photo> show(@PathVariable int id) {
+		Optional<Photo> optPhoto = photoService.findById(id);
+		
+		if (optPhoto.isEmpty())
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		
+		Photo photo = optPhoto.get();
+		
+		if (!photo.getVisible())
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<Photo>(optPhoto.get(), HttpStatus.OK);
 	}
 	
 	@PostMapping

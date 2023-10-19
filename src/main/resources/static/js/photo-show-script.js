@@ -8,7 +8,6 @@ document.body.addEventListener("click", e => {
 	if (e.target == imgEl || e.target == zoomEl || e.target == zoomIconEl) {
 		overlayEl.classList.remove("d-none");
 		overlayEl.classList.add("d-flex");
-		document.body.append(overlayEl);		
 	}
 });
 

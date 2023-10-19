@@ -2,12 +2,12 @@
 
 body {
 	font-family: 'Young Serif', serif !important;
-  background-color: #1e1e1e !important;
+  background-color: $dark !important;
 
   header {
     height: 128px;
     box-shadow: 0 0.5rem 1rem $shadow;
-    background-color: #1e1e1e !important;
+    background-color: $dark !important;
 
     .login {
       display: none;
@@ -21,12 +21,12 @@ body {
 
     #search {
       input {
-        background-color: #1e1e1e;
+        background-color: $dark;
       }
     }
 
     .card {
-      background-color: #1e1e1e !important;
+      background-color: $dark !important;
 
       .card-body .img_wrapper > img {
         object-fit: cover;
@@ -37,7 +37,7 @@ body {
   footer {
     height: 48px;
     box-shadow: 0 -0.5rem 1rem $shadow;
-    background-color: #1e1e1e !important;
+    background-color: $dark !important;
   }
 }
 
@@ -58,7 +58,7 @@ body {
 }
 
 #zoom_icon_wrapper {
-	width: 40px;
+	width: 60px;
 	aspect-ratio: 1 / 1;
 	background-color: $overlay-light;
 }

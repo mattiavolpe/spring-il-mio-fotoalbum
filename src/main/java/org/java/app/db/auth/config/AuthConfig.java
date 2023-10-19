@@ -18,6 +18,7 @@ public class AuthConfig {
 		http.csrf().disable()
 		.authorizeHttpRequests()
 		.requestMatchers("/api/v1**").permitAll()
+		.requestMatchers("/api/v1/**").permitAll()
 		.requestMatchers("/login").permitAll()
 		.requestMatchers("/categories/create").hasAuthority("SUPERADMIN")
 		.requestMatchers("/categories/edit/**").hasAuthority("SUPERADMIN")

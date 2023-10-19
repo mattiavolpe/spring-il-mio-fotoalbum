@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
+import { RouterLink } from 'vue-router'
 
 const API_URL = "http://localhost:8080/api/v1";
 
@@ -72,11 +73,11 @@ onMounted(() => {
         <div v-for="photo in photos" class="col">
           <div class="card h-100 border-0">
             <div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
-              <a :href="'/' + photo.id" class="d-block h-100 text-decoration-none text-light">
+              <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block h-100 text-decoration-none text-light">
                 <div class="img_wrapper position-relative h-100">
                   <img :src="photo.url" :alt="photo.title + ' image'" class="h-100 w-100" />
                 </div>
-              </a>
+              </RouterLink>
             </div>
             <div class="card-footer border-0 bg-transparent pt-0 pb-3 text-center">
               <a :href="'/' + photo.id" class="text-decoration-none text-light">

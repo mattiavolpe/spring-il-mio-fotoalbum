@@ -1,14 +1,14 @@
 <script setup>
-
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <header class="position-sticky top-0 z-1">
     <div class="container position-relative h-100">
       <div class="text-center position-absolute top-50 start-50 translate-middle">
-        <a href="/" class="text-danger text-decoration-none">
+        <RouterLink :to="{ name: 'home' }" class="text-danger text-decoration-none">
           <img src="../assets/img/logo.png" alt="Site logo" height="104" style="filter: invert(1)"/>
-        </a>
+        </RouterLink>
       </div>
       <div class="position-absolute top-50 translate-middle-y" style="right: 12px;">
         <a href="http://localhost:8080/" class="login btn btn-outline-light text-light">
