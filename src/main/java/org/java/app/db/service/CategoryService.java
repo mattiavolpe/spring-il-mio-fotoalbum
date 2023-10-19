@@ -1,6 +1,7 @@
 package org.java.app.db.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.java.app.db.pojo.Category;
 import org.java.app.db.repo.CategoryRepo;
@@ -21,7 +22,15 @@ public class CategoryService {
 		return categoryRepo.findAll();
 	}
 	
+	public Optional<Category> findById(int id) {
+		return categoryRepo.findById(id);
+	}
+	
 	public List<Category> filterByName(String name) {
 		return categoryRepo.findByNameContaining(name);
+	}
+	
+	public void delete(Category category) {
+		categoryRepo.delete(category);
 	}
 }
