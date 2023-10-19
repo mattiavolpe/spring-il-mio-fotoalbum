@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.hibernate.validator.constraints.Length;
 import org.java.app.db.auth.pojo.User;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,9 +51,11 @@ public class Photo {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonManagedReference
 	private User user;
 	
 	@ManyToMany
+	@JsonManagedReference
 	private List<Category> categories;
 	
 	public Photo() {}

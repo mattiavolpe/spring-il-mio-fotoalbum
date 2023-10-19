@@ -35,6 +35,10 @@ public class PhotoService {
 		return photoRepo.findByVisible(true);
 	}
 	
+	public List<Photo> filterByVisibleAndTitleOrDescription(String filter){
+		return photoRepo.findByVisibleAndTitleContainingOrVisibleAndDescriptionContaining(true, filter, true, filter);
+	}
+	
 	public List<Photo> filterByTitleOrDescription(String title, String description) {
 		return photoRepo.findByTitleContainingOrDescriptionContaining(title, description);
 	}

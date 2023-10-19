@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PhotoRepo extends JpaRepository<Photo, Integer> {
 	public List<Photo> findByVisible(Boolean visible);
+	public List<Photo> findByVisibleAndTitleContainingOrVisibleAndDescriptionContaining(Boolean visible, String title, Boolean visible2, String description);
 	public List<Photo> findByUser(User user);
 	public List<Photo> findByTitleContainingOrDescriptionContaining(String title, String description);
 	public List<Photo> findByUserAndTitleContainingOrUserAndDescriptionContaining(User user, String title, User user2, String description);
