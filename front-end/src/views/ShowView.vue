@@ -26,7 +26,6 @@ function goFullScreen() {
 
   overlayEl.classList.remove("d-none");
   overlayEl.classList.add("d-flex");
-  document.body.append(overlayEl);
 }
 
 function exitFullScreen() {
@@ -38,22 +37,6 @@ function exitFullScreen() {
 
 onMounted(() => {
   fetchPhoto();
-
-  document.body.addEventListener("click", e => {
-    const overlayEl = document.getElementById("full_screen_overlay");
-
-    if (e.target == document.getElementById("single_image") || e.target == document.getElementById("zoom_icon_wrapper") || e.target == document.querySelector("#zoom_icon_wrapper [name='plus-circle']")) {
-      overlayEl.classList.remove("d-none");
-      overlayEl.classList.add("d-flex");
-    }
-  });
-
-  document.body.addEventListener("click", () => {
-    const overlayEl = document.getElementById("full_screen_overlay");
-
-    overlayEl.classList.remove("d-flex");
-    overlayEl.classList.add("d-none");
-  }, true);
 })
 
 </script>
@@ -65,13 +48,13 @@ onMounted(() => {
       <h1 class="text-center mb-4 text-light">{{ photo.title }}</h1>
       
       <div class="position-relative d-flex align-items-center justify-content-center" id="single_image_wrapper">
-        <img :src="photo.url" :alt="photo.title + ' image'" class="img-fluid" id="single_image" />
-        <div id="zoom_icon_wrapper" class="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle opacity-0" >
-          <box-icon name='plus-circle' type='solid' style="flex-shrink: 0; fill: #1e1e1e;" ></box-icon>
+        <img :src="photo.url" :alt="photo.title + ' image'" class="img-fluid" id="single_image" @click="goFullScreen()"/>
+        <div id="zoom_icon_wrapper" class="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle opacity-0" @click="goFullScreen()">
+          <box-icon name='plus-circle' type='solid' style="flex-shrink: 0; fill: #1e1e1e;"></box-icon>
         </div>
       </div>
       
-      <div class="d-none align-items-center justify-content-center position-fixed top-0 start-0 z-2" id="full_screen_overlay" >
+      <div class="d-none align-items-center justify-content-center position-fixed top-0 start-0 z-2" id="full_screen_overlay" @click="exitFullScreen()">
         <img :src="photo.url" :alt="photo.title + ' image'" />
       </div>
       
