@@ -49,6 +49,9 @@ main {
 }
 
 #zoom_icon_wrapper {
+	width: 100px;
+	aspect-ratio: 1 / 1;
+	background-color: var(--overlay-light);
 	transition: 0.3s;
 }
 
@@ -56,12 +59,6 @@ main {
 #zoom_icon_wrapper:hover {
 	opacity: 1 !important;
 	cursor: pointer;
-}
-
-#zoom_icon_wrapper {
-	width: 100px;
-	aspect-ratio: 1 / 1;
-	background-color: var(--overlay-light);
 }
 
 #full_screen_overlay {

@@ -1,6 +1,5 @@
 package org.java.app.db.pojo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.validator.constraints.Length;
