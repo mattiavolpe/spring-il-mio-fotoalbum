@@ -24,11 +24,11 @@ main {
 	overflow-y: auto;
 }
 
-#index_image .card-body .img_wrapper {
+.index_image .card-body .img_wrapper {
 	aspect-ratio: 2 / 3;	
 }
 
-#index_image .card-body .img_wrapper > img {
+.index_image .card-body .img_wrapper > img {
 	object-fit: cover;
 }
 

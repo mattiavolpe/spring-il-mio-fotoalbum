@@ -14,11 +14,11 @@
 				<h1 class="text-center mb-4">CATEGORY: [[*{name}]]</h1>
 				
 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-					<div th:each="photo : ${photos}" th:object="${photo}" class="col">
+					<div th:each="photo : ${photos}" th:object="${photo}" class="col index_image">
 						<div class="card h-100 border-0">
-							<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
-								<a th:href="@{/{id}(id=*{id})}" class="d-block h-100 text-decoration-none text-dark">
-									<div class="img_wrapper position-relative h-100">
+							<div class="card-body flex-grow-0 flex-shrink-0">
+								<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none text-dark">
+									<div class="img_wrapper position-relative">
 										<img th:src="*{url}" th:alt="*{title + ' image'}" class="h-100 w-100" />
 										<div th:unless="*{visible}" class="invisible_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
 											<i class="fa-solid fa-eye-slash fa-2xl text-danger"></i>
