@@ -71,7 +71,7 @@ onMounted(() => {
       
       <h3 class="mt-4 mb-0 text-center text-light">{{photo.description}}</h3>
 
-      <div v:if="photo.categories.length > 0" class="bg-dark mt-4 p-3 rounded">
+      <div v-if="photo.categories.length > 0" class="bg-dark mt-4 p-3 rounded">
         <h4 class="m-0 text-light">Categories:</h4>
         <span v-for="(category, index) in photo.categories">
           <RouterLink :to="{ name: 'categoryShow', params: { id: category.id}}" v-if="index < photo.categories.length - 1 && photo.categories.length > 1" class="fst-italic text-secondary text-decoration-none">

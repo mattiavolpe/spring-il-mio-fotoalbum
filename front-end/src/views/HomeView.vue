@@ -74,7 +74,7 @@ onMounted(() => {
 
     <div v-if="photos.length > 0" class="container">
       
-      <form v:if="photos.length > 0" class="mb-4" @submit.prevent="searchPhotos()">
+      <form v-if="photos.length > 0" class="mb-4" @submit.prevent="searchPhotos()">
         <label for="filter" class="text-light mb-2">Search</label>
         <div id="search" class="d-flex flex-column align-items-start gap-3">
           <input class="px-1 py-2 rounded border border-light text-light" type="text" name="filter" id="filter" placeholder="Type a filter..." v-model.trim="filter" />
