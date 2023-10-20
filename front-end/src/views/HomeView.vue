@@ -65,10 +65,6 @@ onMounted(() => {
         </div>
       </form>
       
-      <div class="mb-4">
-        <a href="/categories" class="btn btn-outline-light">Watch the categories</a>
-      </div>
-      
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div v-for="photo in photos" class="col">
           <div class="card h-100 border-0">
