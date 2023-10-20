@@ -96,6 +96,10 @@ body {
       max-height: 94vh;
       max-height: 94svh;
     }
+
+    #sending_message_alert box-icon {
+      fill: $info;
+    }
   }
 
   footer {

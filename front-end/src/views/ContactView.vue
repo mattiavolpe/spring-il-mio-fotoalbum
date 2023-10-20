@@ -14,11 +14,14 @@ const inputErrors = ref({
 
 const API_URL = "http://localhost:8080/api/v1";
 
+const sending = ref(false);
+
 const sendOk = ref(null);
 
 const regex = /[\S]+@[\S]+\.[\S]+/;
 
 function sendMessage() {
+  sending.value = true;
   inputErrors.value.email = null;
   inputErrors.value.content = null;
 
@@ -32,8 +35,10 @@ function sendMessage() {
     inputErrors.value.email = true;
   }
 
-  if (inputErrors.value.email || inputErrors.value.content)
+  if (inputErrors.value.email || inputErrors.value.content) {
+    sending.value = false;
     return;
+  }
 
   axios
   .post(`${API_URL}`, forminput.value)
@@ -46,6 +51,9 @@ function sendMessage() {
   })
   .catch(error => {
     console.error(error);
+  })
+  .finally(() => {
+    sending.value = false;
   })
 }
 </script>
@@ -76,9 +84,16 @@ function sendMessage() {
         <button type="submit" class="btn btn-outline-light px-3 py-2 rounded">Send message</button>
       </form>
 
+      <div v-if="sending" class="alert alert-info" role="alert" id="sending_message_alert">
+        <strong>
+          Sending message
+          <box-icon name='loader-circle' animation='spin' class="align-bottom"></box-icon>
+        </strong>
+      </div>
+
       <div v-if="sendOk" class="alert alert-success" role="alert">
         <strong>Message sent</strong>
-      </div>
+      </div>      
       
     </div>
   </main>
