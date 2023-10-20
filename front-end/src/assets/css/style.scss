@@ -9,6 +9,14 @@ body {
     box-shadow: 0 0.5rem 1rem $shadow;
     background-color: $dark !important;
 
+    #site_logo {
+      filter: invert(1);
+    }
+
+    box-icon {
+      fill: $light;
+    }
+
     .login,
     .contact {
       display: none;
@@ -24,6 +32,11 @@ body {
     height: calc(100vh - 128px - 48px);
     height: calc(100svh - 128px - 48px);
     overflow-y: auto;
+
+    #loading_photos_icon,
+    #no_photos_icon {
+      fill: $secondary;
+    }
 
     #search input,
     #contact input,
@@ -59,6 +72,10 @@ body {
       aspect-ratio: 1 / 1;
       background-color: $overlay-light;
       transition: 0.3s;
+
+      box-icon {
+        fill: $dark;
+      }
     }
     
     #single_image_wrapper:has(img:hover) #zoom_icon_wrapper,
@@ -85,6 +102,10 @@ body {
     height: 48px;
     box-shadow: 0 -0.5rem 1rem $shadow;
     background-color: $dark !important;
+
+    box-icon {
+      fill: $danger;
+    }
   }
 }
 
