@@ -21,6 +21,7 @@ const sendOk = ref(null);
 const regex = /[\S]+@[\S]+\.[\S]+/;
 
 function sendMessage() {
+  sendOk.value = null;
   sending.value = true;
   inputErrors.value.email = null;
   inputErrors.value.content = null;
@@ -51,6 +52,7 @@ function sendMessage() {
   })
   .catch(error => {
     console.error(error);
+    sendOk.value = false;
   })
   .finally(() => {
     sending.value = false;
@@ -93,7 +95,11 @@ function sendMessage() {
 
       <div v-if="sendOk" class="alert alert-success" role="alert">
         <strong>Message sent</strong>
-      </div>      
+      </div>
+
+      <div v-if="!sendOk && sendOk != null" class="alert alert-danger" role="alert">
+        <strong>Send failed</strong>
+      </div>
       
     </div>
   </main>
