@@ -10,12 +10,12 @@ import { RouterLink } from 'vue-router'
           Contact me
         </RouterLink>
         <RouterLink :to="{ name: 'contact' }" class="contact-mobile btn btn-outline-light d-flex align-items-center justicy-content-center">
-          <box-icon name='envelope' style="fill: #f8f9fa; vertical-align: middle;"></box-icon>
+          <box-icon name='envelope' class="align-middle"></box-icon>
         </RouterLink>
       </div>
       <div class="text-center position-absolute top-50 start-50 translate-middle">
         <RouterLink :to="{ name: 'home' }" class="text-decoration-none">
-          <img src="../assets/img/logo.png" alt="Site logo" height="104" style="filter: invert(1)"/>
+          <img src="../assets/img/logo.png" alt="Site logo" height="104" id="site_logo" />
         </RouterLink>
       </div>
       <div class="position-absolute top-50 translate-middle-y" style="right: 12px;">
@@ -23,7 +23,7 @@ import { RouterLink } from 'vue-router'
           Personal area
         </a>
         <a href="http://localhost:8080/" target="_blank" class="login-mobile btn btn-outline-light d-flex align-items-center justicy-content-center">
-          <box-icon type='solid' name='user' style="fill: #f8f9fa; vertical-align: middle;"></box-icon>
+          <box-icon type='solid' name='user' class="align-middle"></box-icon>
         </a>
       </div>
     </div>

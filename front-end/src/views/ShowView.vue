@@ -50,7 +50,7 @@ onMounted(() => {
       <div class="position-relative d-flex align-items-center justify-content-center" id="single_image_wrapper">
         <img :src="photo.url" :alt="photo.title + ' image'" class="img-fluid" id="single_image" @click="goFullScreen()"/>
         <div id="zoom_icon_wrapper" class="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle opacity-0" @click="goFullScreen()">
-          <box-icon name='plus-circle' type='solid' style="flex-shrink: 0; fill: #1e1e1e;"></box-icon>
+          <box-icon name='plus-circle' type='solid' class="flex-shrink-0"></box-icon>
         </div>
       </div>
       

@@ -7,9 +7,9 @@
 		<div class="container d-flex align-items-center justify-content-center h-100">
 			<h5 class="mb-0 text-center text-light">
 				Made with
-				<box-icon name='heart' type='solid' style="fill: red; vertical-align: bottom;"></box-icon>
+				<box-icon name='heart' type='solid' class="align-bottom"></box-icon>
 				&amp;
-				<box-icon name='brain' type='solid' style="fill: red; vertical-align: bottom;"></box-icon>
+				<box-icon name='brain' type='solid' class="align-bottom"></box-icon>
 				by Mattia Volpe
 			</h5>
 		</div>
