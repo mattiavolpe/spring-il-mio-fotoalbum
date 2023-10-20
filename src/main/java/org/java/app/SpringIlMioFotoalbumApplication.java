@@ -76,11 +76,11 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		Photo photo2 = new Photo("Old indian man", "An old indian man with a long beard and typical clothing", "https://images.unsplash.com/photo-1514907728441-b33bec65e315", true, false, superadmin, portrait);
 		Photo photo3 = new Photo("Milky Way over the trees", "A view of the Milky Way over the forest trees", "https://images.unsplash.com/photo-1533683083439-1a776a5653cb", false, true, user, landscape, night);
 		Photo photo4 = new Photo("Colorful chameleon", "A colorful chameleon on a blurred background", "https://images.unsplash.com/photo-1633008988882-b7193dc43a22", true, false, user, animal);
-		Photo photo5 = new Photo("Salmon sushi rolls", "A plate full of salmon sushi rolls", "https://images.unsplash.com/photo-1579871494447-9811cf80d66c", false, true, superadmin, food);
+		Photo photo5 = new Photo("Salmon sushi rolls", "A plate full of salmon sushi rolls", "https://images.unsplash.com/photo-1579871494447-9811cf80d66c", true, false, superadmin, food);
 		Photo photo6 = new Photo("Together towards infinity", "Husband and wife holding each other hands, standing in front of a infinite landscape", "https://images.unsplash.com/photo-1498979237786-9c35706bd45e", true, false, superadmin, wedding, landscape);
 		Photo photo7 = new Photo("St. Nicholas Church in Mala Strana", "St. Nicholas Church in Mala Strana (Prague) at night", "https://images.unsplash.com/photo-1532631287453-22064af5316b", true, false, user2, city, night);
 		Photo photo8 = new Photo("White tiger", "A wild white tiger", "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131", false, true, superadmin, animal);
-		Photo photo9 = new Photo("City cross road", "A giant cross road in the heart of the city", "https://images.unsplash.com/photo-1465447142348-e9952c393450", true, false, user2, city);
+		Photo photo9 = new Photo("City cross road", "A giant cross road in the heart of the city", "https://images.unsplash.com/photo-1465447142348-e9952c393450", false, false, user2, city);
 		Photo photo10 = new Photo("Pancakes and maple syrup", "A tower of delicious pancakes with a maple syrup topping", "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445", true, false, user, food);
 		
 		photoService.savePhoto(photo1);
