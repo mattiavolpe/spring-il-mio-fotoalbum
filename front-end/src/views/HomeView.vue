@@ -75,7 +75,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div v-if="photos.length > 0" class="container">
+    <div v-if="photos.length > 0 || lastResearch != ''" class="container">
 
       <form class="mb-4" @submit.prevent="searchPhotos()">
         <label for="filter" class="text-light mb-2">Search</label>

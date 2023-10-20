@@ -69,7 +69,7 @@ onMounted(() => {
         <img :src="photo.url" :alt="photo.title + ' image'" />
       </div>
       
-      <h3 class="mt-4 mb-0 text-center text-light">{{photo.description}}</h3>
+      <h4 class="mt-4 mb-0 text-center text-light">{{photo.description}}</h4>
 
       <div v-if="photo.categories.length > 0" class="bg-dark mt-4 p-3 rounded">
         <h4 class="m-0 text-light">Categories:</h4>
