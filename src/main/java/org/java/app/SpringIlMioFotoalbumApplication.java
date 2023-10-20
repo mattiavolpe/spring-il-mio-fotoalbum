@@ -80,8 +80,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		Photo photo6 = new Photo("Together towards infinity", "Husband and wife holding each other hands, standing in front of a infinite landscape", "https://images.unsplash.com/photo-1498979237786-9c35706bd45e", true, false, superadmin, wedding, landscape);
 		Photo photo7 = new Photo("St. Nicholas Church in Mala Strana", "St. Nicholas Church in Mala Strana (Prague) at night", "https://images.unsplash.com/photo-1532631287453-22064af5316b", true, false, user2, city, night);
 		Photo photo8 = new Photo("White tiger", "A wild white tiger", "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131", false, true, superadmin, animal);
-		Photo photo9 = new Photo("City cross road", "A giant cross road in the heart of the city", "https://images.unsplash.com/photo-1465447142348-e9952c393450", true, false, user2, landscape);
-		Photo photo10 = new Photo("Pancakes and maple syrup", "A tower of delicious pancakes with a maple syrup topping", "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445", true, false, user, landscape);
+		Photo photo9 = new Photo("City cross road", "A giant cross road in the heart of the city", "https://images.unsplash.com/photo-1465447142348-e9952c393450", true, false, user2, city);
+		Photo photo10 = new Photo("Pancakes and maple syrup", "A tower of delicious pancakes with a maple syrup topping", "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445", true, false, user, food);
 		
 		photoService.savePhoto(photo1);
 		photoService.savePhoto(photo2);
