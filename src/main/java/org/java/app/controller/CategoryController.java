@@ -118,8 +118,6 @@ public class CategoryController {
 			return "/photo/create-update";
 		}
 		
-		System.out.println(category);
-		
 		Optional<Category> optCategory = categoryService.findById(id);
 		
 		if (optCategory.isEmpty())
