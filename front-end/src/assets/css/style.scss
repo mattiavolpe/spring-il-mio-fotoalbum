@@ -13,10 +13,6 @@ body {
       filter: invert(1);
     }
 
-    box-icon {
-      fill: $light;
-    }
-
     .login,
     .contact {
       display: none;
@@ -72,10 +68,6 @@ body {
       aspect-ratio: 1 / 1;
       background-color: $overlay-light;
       transition: 0.3s;
-
-      box-icon {
-        fill: $dark;
-      }
     }
     
     #single_image_wrapper:has(img:hover) #zoom_icon_wrapper,
@@ -97,8 +89,8 @@ body {
       max-height: 94svh;
     }
 
-    #sending_message_alert box-icon {
-      fill: $info;
+    #sending_message_alert svg {
+      color: $info;
     }
   }
 
@@ -106,10 +98,6 @@ body {
     height: 48px;
     box-shadow: 0 -0.5rem 1rem $shadow;
     background-color: $dark !important;
-
-    box-icon {
-      fill: $danger;
-    }
   }
 }
 

@@ -50,8 +50,8 @@ onMounted(() => {
 <template>
   <main class="py-5">
     <div v-if="loading" class="container text-secondary text-center">
-      <box-icon name='hourglass' animation="spin" size="lg" id="loading_photos_icon"></box-icon>
-      <h2>LOADING PHOTO</h2>
+      <font-awesome-icon icon="fa-solid fa-hourglass" spin size="2xl" />
+      <h2 class="mt-3">LOADING PHOTO</h2>
     </div>
 
     <div v-if="photo != null" class="container">
@@ -61,7 +61,7 @@ onMounted(() => {
       <div class="position-relative d-flex align-items-center justify-content-center" id="single_image_wrapper">
         <img :src="photo.url" :alt="photo.title + ' image'" class="img-fluid" id="single_image" @click="goFullScreen()"/>
         <div id="zoom_icon_wrapper" class="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle opacity-0" @click="goFullScreen()">
-          <box-icon name='plus-circle' type='solid' class="flex-shrink-0"></box-icon>
+          <font-awesome-icon icon="fa-solid fa-plus" size="xl" class="text-dark" />
         </div>
       </div>
       
@@ -88,8 +88,8 @@ onMounted(() => {
     </div>
 
     <div v-if="photo == null && !loading" class="container text-secondary text-center">
-      <box-icon name='camera-off' size="lg" id="no_photos_icon"></box-icon>
-      <h1 color="black">PHOTO NOT FOUND</h1>
+      <font-awesome-icon icon="fa-solid fa-ban" size="2xl" />
+      <h1 class="mt-3">PHOTO NOT FOUND</h1>
       <h3>COME BACK TO CHECK LATER</h3>
     </div>
   </main>

@@ -87,7 +87,7 @@ function sendMessage() {
       <div v-if="sending" class="alert alert-info" role="alert" id="sending_message_alert">
         <strong>
           Sending message
-          <box-icon name='loader-circle' animation='spin' class="align-bottom"></box-icon>
+          <font-awesome-icon icon="fa-solid fa-spinner" size="lg" spin />
         </strong>
       </div>
 

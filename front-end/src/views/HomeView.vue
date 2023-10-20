@@ -68,8 +68,8 @@ onMounted(() => {
 <template>
   <main class="py-5">
     <div v-if="loading" class="container text-secondary text-center">
-      <box-icon name='hourglass' animation="spin" size="lg" id="loading_photos_icon"></box-icon>
-      <h2>LOADING PHOTOS</h2>
+      <font-awesome-icon icon="fa-solid fa-hourglass" spin size="2xl" />
+      <h2 class="mt-3">LOADING PHOTOS</h2>
     </div>
 
     <div v-if="photos.length > 0" class="container">
@@ -111,8 +111,8 @@ onMounted(() => {
     </div>
 
     <div v-if="photos.length < 1 && !loading" class="container text-secondary text-center">
-      <box-icon name='camera-off' size="lg" id="no_photos_icon"></box-icon>
-      <h1 color="black">NO PHOTOS AT THE MOMENT</h1>
+      <font-awesome-icon icon="fa-solid fa-ban" size="2xl" />
+      <h2 class="mt-3">NO PHOTOS AT THE MOMENT</h2>
       <h3>COME BACK TO CHECK LATER</h3>
     </div>
   </main>
