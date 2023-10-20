@@ -9,6 +9,8 @@ const API_URL = "http://localhost:8080/api/v1";
 
 const photo = ref(null);
 
+const loading = ref(true);
+
 function fetchPhoto() {
   axios
   .get(`${API_URL}/${route.params.id}`)
@@ -18,6 +20,10 @@ function fetchPhoto() {
   })
   .catch(error => {
     console.error(error);
+    photo.value = null;
+  })
+  .finally(() => {
+    loading.value = false;
   })
 }
 
@@ -43,6 +49,11 @@ onMounted(() => {
 
 <template>
   <main class="py-5">
+    <div v-if="loading" class="container text-secondary text-center">
+      <box-icon name='hourglass' animation="spin" size="lg" id="loading_photos_icon"></box-icon>
+      <h2>LOADING PHOTO</h2>
+    </div>
+
     <div v-if="photo != null" class="container">
 				
       <h1 class="text-center mb-4 text-light">{{ photo.title }}</h1>
@@ -74,6 +85,12 @@ onMounted(() => {
         </span>
       </div>
       
+    </div>
+
+    <div v-if="photo == null && !loading" class="container text-secondary text-center">
+      <box-icon name='camera-off' size="lg" id="no_photos_icon"></box-icon>
+      <h1 color="black">PHOTO NOT FOUND</h1>
+      <h3>COME BACK TO CHECK LATER</h3>
     </div>
   </main>
 </template>

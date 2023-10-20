@@ -33,6 +33,7 @@ function fetchPhotos(keyword) {
   })
   .catch(error => {
     console.error(error);
+    photos.value = [];
   })
   .finally(() => {
     loading.value = false;
@@ -51,6 +52,7 @@ function fetchAll() {
   })
   .catch(error => {
     console.error(error);
+    photos.value = [];
   })
   .finally(() => {
     loading.value = false;
