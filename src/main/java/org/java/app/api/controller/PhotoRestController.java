@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.java.app.db.pojo.Category;
 import org.java.app.db.pojo.Message;
 import org.java.app.db.pojo.Photo;
+import org.java.app.db.service.CategoryService;
 import org.java.app.db.service.MessageService;
 import org.java.app.db.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PhotoRestController {
 	
 	@Autowired
 	private PhotoService photoService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@Autowired
 	private MessageService messageService;
@@ -53,6 +58,20 @@ public class PhotoRestController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<Photo>(optPhoto.get(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/category/{id}")
+	public ResponseEntity<List<Photo>> showCategoryPhotos(@PathVariable int id) {
+		Optional<Category> optCategory = categoryService.findById(id);
+		
+		if (optCategory.isEmpty())
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		
+		Category category = optCategory.get();
+		
+		List<Photo> photos = category.getPhotos().stream().filter(photo -> photo.getVisible()).toList();
+		
+		return new ResponseEntity<List<Photo>>(photos, HttpStatus.OK);
 	}
 	
 	@PostMapping

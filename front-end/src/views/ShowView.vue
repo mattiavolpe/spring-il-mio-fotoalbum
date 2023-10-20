@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router'
+import { useRoute, RouterLink } from 'vue-router'
 
 const route = useRoute();
 
@@ -74,14 +74,14 @@ onMounted(() => {
       <div v:if="photo.categories.length > 0" class="bg-dark mt-4 p-3 rounded">
         <h4 class="m-0 text-light">Categories:</h4>
         <span v-for="(category, index) in photo.categories">
-          <span v-if="index < photo.categories.length - 1 && photo.categories.length > 1" class="fst-italic text-secondary">
+          <RouterLink :to="{ name: 'categoryShow', params: { id: category.id}}" v-if="index < photo.categories.length - 1 && photo.categories.length > 1" class="fst-italic text-secondary">
             {{category.name}} - 
-          </span>
+          </RouterLink>
         </span>
         <span v-for="(category, index) in photo.categories">
-          <span v-if="index === photo.categories.length - 1" class="fst-italic text-secondary">
+          <RouterLink :to="{ name: 'categoryShow', params: { id: category.id}}" v-if="index === photo.categories.length - 1" class="fst-italic text-secondary">
             {{category.name}}
-          </span>
+          </RouterLink>
         </span>
       </div>
       
