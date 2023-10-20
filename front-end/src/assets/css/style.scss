@@ -49,10 +49,11 @@ body {
       height: 80px;
     }
 
-    .card {
+    #index_image .card {
       background-color: $dark !important;
 
       .card-body .img_wrapper > img {
+        aspect-ratio: 2 / 3;
         object-fit: cover;
       }
     }

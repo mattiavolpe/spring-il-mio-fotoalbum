@@ -88,7 +88,7 @@ onMounted(() => {
       </h3>
       
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <div v-for="photo in photos" class="col">
+        <div v-for="photo in photos" class="col" id="index_image">
           <div class="card h-100 border-0">
             <div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
               <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block h-100 text-decoration-none text-light">
