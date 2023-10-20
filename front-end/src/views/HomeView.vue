@@ -93,7 +93,7 @@ onMounted(() => {
             <div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
               <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block h-100 text-decoration-none text-light">
                 <div class="img_wrapper position-relative h-100">
-                  <img :src="photo.url" :alt="photo.title + ' image'" class="h-100 w-100" />
+                  <img :src="photo.url" :alt="photo.title + ' image'" class="w-100 h-100" />
                 </div>
               </RouterLink>
             </div>

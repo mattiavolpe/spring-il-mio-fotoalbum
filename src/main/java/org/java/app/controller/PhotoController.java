@@ -33,7 +33,7 @@ public class PhotoController {
 	public String index(@RequestParam(required = false) String filter, Model model, Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
 		
-		if (user.getUsername().equals("superadmin")) {
+		if (user.getId() == 1) {
 			List<Photo> photos = filter == null
 					? photoService.findAll()
 					: photoService.filterByTitleOrDescription(filter, filter);
@@ -137,9 +137,9 @@ public class PhotoController {
 
 		photo.setUser(user);
 		
-		if (authUser.getUsername().equals("superadmin") && !photo.getVisible())
+		if (authUser.getId() == 1 && !photo.getVisible())
 			photo.setHiddenBySuperadmin(true);
-		else if (!authUser.getUsername().equals("superadmin") && photo.getVisible() == null) {
+		else if (authUser.getId() != 1 && photo.getVisible() == null) {
 			photo.setHiddenBySuperadmin(true);
 			photo.setVisible(false);
 		} else

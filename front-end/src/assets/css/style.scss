@@ -52,8 +52,11 @@ body {
     #index_image .card {
       background-color: $dark !important;
 
-      .card-body .img_wrapper > img {
+      .card-body .img_wrapper {
         aspect-ratio: 2 / 3;
+      }
+
+      .card-body .img_wrapper > img {
         object-fit: cover;
       }
     }
