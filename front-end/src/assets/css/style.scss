@@ -3,106 +3,109 @@
 body {
 	font-family: 'Young Serif', serif !important;
   background-color: $dark !important;
+}
 
-  header {
-    height: 128px;
-    box-shadow: 0 0.5rem 1rem $shadow;
-    background-color: $dark !important;
+header {
+  height: 128px;
+  box-shadow: 0 0.5rem 1rem $shadow;
 
-    #site_logo {
-      filter: invert(1);
-    }
-
-    .login,
-    .contact {
-      display: none;
-    }
-
-    .login-mobile:hover,
-    .contact-mobile:hover {
-      background-color: transparent !important;
-    }
+  #site_logo {
+    filter: invert(1);
   }
 
-  main {
-    height: calc(100vh - 128px - 48px);
-    height: calc(100svh - 128px - 48px);
-    overflow-y: auto;
-
-    #loading_photos_icon,
-    #no_photos_icon {
-      fill: $secondary;
-    }
-
-    #search input,
-    #contact input,
-    #contact textarea {
-      background-color: $dark;
-    }
-
-    #contact input,
-    #contact textarea {
-      width: 100%;
-    }
-
-    #contact textarea {
-      height: 80px;
-    }
-
-    #index_image .card {
-      background-color: $dark !important;
-
-      .card-body .img_wrapper {
-        aspect-ratio: 2 / 3;
-      }
-
-      .card-body .img_wrapper > img {
-        object-fit: cover;
-      }
-    }
-
-    #single_image {
-      max-height: calc(100vh - 128px - 96px - 48px - 24px - 110px - 58px - 48px);
-      max-height: calc(100svh - 128px - 96px - 48px - 24px - 110px - 58px - 48px);
-      cursor: pointer;
-    }
-    
-    #zoom_icon_wrapper {
-      width: 60px;
-      aspect-ratio: 1 / 1;
-      background-color: $overlay-light;
-      transition: 0.3s;
-    }
-    
-    #single_image_wrapper:has(img:hover) #zoom_icon_wrapper,
-    #zoom_icon_wrapper:hover {
-      opacity: 1 !important;
-      cursor: pointer;
-    }
-    
-    #full_screen_overlay {
-      width: 100vw;
-      height: 100vh;
-      height: 100svh;
-      background-color: $overlay-darker;
-    }
-    
-    #full_screen_overlay > img {
-      max-width: 94%;
-      max-height: 94vh;
-      max-height: 94svh;
-    }
-
-    #sending_message_alert svg {
-      color: $info;
-    }
+  .login,
+  .contact {
+    display: none;
   }
 
-  footer {
-    height: 48px;
-    box-shadow: 0 -0.5rem 1rem $shadow;
-    background-color: $dark !important;
+  .login-mobile:hover,
+  .contact-mobile:hover {
+    background-color: transparent !important;
   }
+}
+
+main {
+  height: calc(100vh - 128px - 48px);
+  height: calc(100svh - 128px - 48px);
+  overflow-y: auto;
+
+  #loading_photos_icon,
+  #no_photos_icon {
+    fill: $secondary;
+  }
+
+  #search input,
+  #contact input,
+  #contact textarea {
+    background-color: $dark;
+  }
+
+  #contact input,
+  #contact textarea {
+    width: 100%;
+  }
+
+  #contact textarea {
+    height: 80px;
+  }
+
+  .mobile_column .image_overlay,
+  .large_column .image_overlay {
+    background-color: #f8f9fa77;
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .mobile_column .image_overlay:hover,
+  .large_column .image_overlay:hover {
+    color: $dark;
+    opacity: 1;
+  }
+
+  .large_column {
+    display: none;
+  }
+
+  #single_image {
+    max-height: calc(100vh - 128px - 96px - 48px - 24px - 110px - 58px - 48px);
+    max-height: calc(100svh - 128px - 96px - 48px - 24px - 110px - 58px - 48px);
+    cursor: pointer;
+  }
+  
+  #zoom_icon_wrapper {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    background-color: $overlay-light;
+    transition: 0.3s;
+  }
+  
+  #single_image_wrapper:has(img:hover) #zoom_icon_wrapper,
+  #zoom_icon_wrapper:hover {
+    opacity: 1 !important;
+    cursor: pointer;
+  }
+  
+  #full_screen_overlay {
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    background-color: $overlay-darker;
+  }
+  
+  #full_screen_overlay > img {
+    max-width: 94%;
+    max-height: 94vh;
+    max-height: 94svh;
+  }
+
+  #sending_message_alert svg {
+    color: $info;
+  }
+}
+
+footer {
+  height: 48px;
+  box-shadow: 0 -0.5rem 1rem $shadow;
 }
 
 @media screen and (min-width: 768px) {
@@ -116,11 +119,21 @@ body {
     .contact-mobile {
       display: none !important;
     }
-	}
-		
-	#search {
-		flex-direction: row !important;
-		align-items: center !important;
-		gap: 16px;
-	}
+  }
+
+  main {
+    #search {
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 16px;
+    }
+  
+    .mobile_column {
+      display: none;
+    }
+  
+    .large_column {
+      display: block;
+    }
+  }
 }
