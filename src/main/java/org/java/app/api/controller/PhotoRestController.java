@@ -1,7 +1,9 @@
 package org.java.app.api.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.java.app.db.pojo.Category;
@@ -61,7 +63,7 @@ public class PhotoRestController {
 	}
 	
 	@GetMapping("/category/{id}")
-	public ResponseEntity<List<Photo>> showCategoryPhotos(@PathVariable int id) {
+	public ResponseEntity<Map<String, Object>> showCategoryPhotos(@PathVariable int id) {
 		Optional<Category> optCategory = categoryService.findById(id);
 		
 		if (optCategory.isEmpty())
@@ -71,7 +73,12 @@ public class PhotoRestController {
 		
 		List<Photo> photos = category.getPhotos().stream().filter(photo -> photo.getVisible()).toList();
 		
-		return new ResponseEntity<List<Photo>>(photos, HttpStatus.OK);
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		
+		responseMap.put("photos", photos);
+		responseMap.put("category", category);
+		
+		return new ResponseEntity<Map<String, Object>>(responseMap, HttpStatus.OK);
 	}
 	
 	@PostMapping
