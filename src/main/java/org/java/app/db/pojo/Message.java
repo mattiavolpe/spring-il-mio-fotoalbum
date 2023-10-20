@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 public class Message {
@@ -20,6 +21,8 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@PastOrPresent
+	@Column(nullable = false)
 	private LocalDateTime date;
 	
 	@NotBlank
