@@ -7,7 +7,7 @@ body {
 
 header {
   height: 128px;
-  box-shadow: 0 0.5rem 1rem $shadow;
+  box-shadow: 0 8px 16px 4px $shadow;
 
   #site_logo {
     filter: invert(1);
@@ -47,6 +47,11 @@ main {
 
   #contact textarea {
     height: 80px;
+  }
+
+  .mobile_column a,
+  .large_column a {
+    box-shadow: -8px 8px 0.5rem 0 $shadow;
   }
 
   .mobile_column .image_overlay,
@@ -105,7 +110,7 @@ main {
 
 footer {
   height: 48px;
-  box-shadow: 0 -0.5rem 1rem $shadow;
+  box-shadow: 0 -8px 16px 4px $shadow;
 }
 
 @media screen and (min-width: 768px) {
