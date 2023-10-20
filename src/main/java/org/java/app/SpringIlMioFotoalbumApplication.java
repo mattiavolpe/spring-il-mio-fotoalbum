@@ -141,6 +141,14 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		photos.add(photo8);
 		photos.add(photo9);
 		photos.add(photo10);
+		photos.add(photo11);
+		photos.add(photo12);
+		photos.add(photo13);
+		photos.add(photo14);
+		photos.add(photo15);
+		photos.add(photo16);
+		photos.add(photo17);
+		photos.add(photo18);
 		
 		for (Photo photo : photos) {
 			photo.setVisible(3 > random.nextInt(4));
