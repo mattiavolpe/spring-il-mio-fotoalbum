@@ -19,7 +19,6 @@ function fetchAll() {
   .get(`${API_URL}/category/${route.params.slug}`)
   .then(res => {
     if (res.status == 200) {
-      console.log(res.data);
       photos.value = res.data.photos;
       category.value = res.data.category.name;
     }
