@@ -30,11 +30,11 @@
 					<div th:each="category : ${categories}" th:object="${category}" class="col">
 						<div class="card h-100 border-0">
 							<div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
-								<a th:href="@{/categories/{id}(id=*{id})}" class="d-block h-100 text-decoration-none text-dark">[[*{name}]]</a>
+								<a th:href="@{/categories/{slug}(slug=*{slug})}" class="d-block h-100 text-decoration-none text-dark">[[*{name}]]</a>
 							</div>
 							<div sec:authorize="hasAuthority('SUPERADMIN')" class="card-footer border-0 bg-transparent pt-0 pb-3 text-center">								
 								<div class="d-flex align-items-center justify-content-center">
-									<a th:href="@{/categories/edit/{id}(id=*{id})}" class="mx-2 text-decoration-none">
+									<a th:href="@{/categories/edit/{slug}(slug=*{slug})}" class="mx-2 text-decoration-none">
 										<i class="fa-solid fa-pen-to-square btn btn-outline-dark py-2 px-4 rounded-5 pointer edit_icon"></i>
 									</a>
 									

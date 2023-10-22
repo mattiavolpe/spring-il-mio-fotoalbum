@@ -35,7 +35,7 @@
 					<div th:each="photo : ${photos}" th:object="${photo}" class="col index_image">
 						<div class="card h-100 border-0">
 							<div class="card-body flex-grow-0 flex-shrink-0">
-								<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none text-dark">
+								<a th:href="@{/{slug}(slug=*{slug})}" class="text-decoration-none text-dark">
 									<div class="img_wrapper position-relative">
 										<img th:src="*{url}" th:alt="*{title + ' image'}" class="w-100 h-100" />
 										<div th:unless="*{visible}" class="invisible_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
@@ -45,14 +45,14 @@
 								</a>
 							</div>
 							<div class="card-footer border-0 bg-transparent pt-0 pb-3 text-center">
-								<a th:href="@{/{id}(id=*{id})}" class="text-decoration-none text-dark">
+								<a th:href="@{/{slug}(slug=*{slug})}" class="text-decoration-none text-dark">
 									<h5 class="mb-3">
 										[[*{title}]]
 									</h5>
 								</a>
 								
 								<div class="d-flex align-items-center justify-content-center">
-									<a th:href="@{/edit/{id}(id=*{id})}" class="mx-2 text-decoration-none">
+									<a th:href="@{/edit/{slug}(slug=*{slug})}" class="mx-2 text-decoration-none">
 										<i class="fa-solid fa-pen-to-square btn btn-outline-dark py-2 px-4 rounded-5 pointer edit_icon"></i>
 									</a>
 									

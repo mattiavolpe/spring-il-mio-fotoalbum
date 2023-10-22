@@ -8,8 +8,8 @@ const forminput = ref({
 });
 
 const inputErrors = ref({
-  email: null,
-  content: null
+  email: false,
+  content: false
 })
 
 const API_URL = "http://localhost:8080/api/v1";
@@ -23,8 +23,8 @@ const regex = /[\S]+@[\S]+\.[\S]+/;
 function sendMessage() {
   sendOk.value = null;
   sending.value = true;
-  inputErrors.value.email = null;
-  inputErrors.value.content = null;
+  inputErrors.value.email = false;
+  inputErrors.value.content = false;
 
   if (forminput.value.content.length < 3 || forminput.value.content.length > 2000) {
     sendOk.value = false;
@@ -46,8 +46,8 @@ function sendMessage() {
   .then(res => {
     if (res.status == 200) {
       sendOk.value = true;
-      inputErrors.value.email = null;
-      inputErrors.value.content = null;
+      inputErrors.value.email = false;
+      inputErrors.value.content = false;
     }
   })
   .catch(error => {
@@ -97,7 +97,7 @@ function sendMessage() {
         <strong>Message sent</strong>
       </div>
 
-      <div v-if="!sendOk && sendOk != null" class="alert alert-danger" role="alert">
+      <div v-if="!sendOk && sendOk != null && !inputErrors.email && !inputErrors.content" class="alert alert-danger" role="alert">
         <strong>Send failed</strong>
       </div>
       

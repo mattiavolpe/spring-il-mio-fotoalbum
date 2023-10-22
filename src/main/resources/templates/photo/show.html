@@ -46,10 +46,10 @@
 				<div th:if="*{categories.size > 0}" class="bg-body-secondary mt-4 p-3 rounded">
 					<h4 class="m-0">Categories:</h4>
 					<span th:each="category, cycleStats : *{categories}" th:unless="${cycleStats.last}" class="fst-italic">
-						<a th:href="@{/categories/{id}(id=${category.id})}" class="text-decoration-none text-secondary category_name_link">[[${category.name}]]</a> - 
+						<a th:href="@{/categories/{slug}(slug=${category.slug})}" class="text-decoration-none text-secondary category_name_link">[[${category.name}]]</a> - 
 					</span>
 					<span th:each="category, cycleStats : *{categories}" th:if="${cycleStats.last}" class="fst-italic">
-						<a th:href="@{/categories/{id}(id=${category.id})}" class="text-decoration-none text-secondary category_name_link">[[${category.name}]]</a>
+						<a th:href="@{/categories/{slug}(slug=${category.slug})}" class="text-decoration-none text-secondary category_name_link">[[${category.name}]]</a>
 					</span>
 				</div>
 				

@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.slugify.Slugify;
+
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
+	
+	final Slugify slg = Slugify.builder().build();
 
 	@Autowired
 	private CategoryService categoryService;
@@ -43,9 +47,9 @@ public class CategoryController {
 		return "/category/index";
 	}
 	
-	@GetMapping("/{id}")
-	public String show(@PathVariable int id, Model model, Authentication authentication) {		
-		Optional<Category> optCategory = categoryService.findById(id);
+	@GetMapping("/{slug}")
+	public String show(@PathVariable String slug, Model model, Authentication authentication) {		
+		Optional<Category> optCategory = categoryService.findBySlug(slug);
 		
 		if (optCategory.isEmpty())
 			return "redirect:/categories";
@@ -81,6 +85,8 @@ public class CategoryController {
 			return "/photo/create-update";
 		}
 		
+		category.setSlug(slg.slugify(category.getName()));
+		
 		categoryService.saveCategory(category);
 		
 		if (category.getPhotos() != null) {
@@ -95,9 +101,9 @@ public class CategoryController {
 		return "redirect:/categories";
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable int id, Model model) {		
-		Optional<Category> optCategory = categoryService.findById(id);
+	@GetMapping("/edit/{slug}")
+	public String edit(@PathVariable String slug, Model model) {		
+		Optional<Category> optCategory = categoryService.findBySlug(slug);
 		
 		if (optCategory.isEmpty())
 			return "redirect:/categories";
@@ -110,20 +116,23 @@ public class CategoryController {
 		return "/category/create-update";
 	}
 	
-	@PostMapping("/edit/{id}")
-	public String update(@PathVariable int id, @Valid @ModelAttribute Category category, BindingResult bindingResult, Model model) {
+	@PostMapping("/edit/{slug}")
+	public String update(@PathVariable String slug, @Valid @ModelAttribute Category category, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("categories", categoryService.findAll());
 			
 			return "/photo/create-update";
 		}
 		
-		Optional<Category> optCategory = categoryService.findById(id);
+		Optional<Category> optCategory = categoryService.findBySlug(slug);
 		
 		if (optCategory.isEmpty())
 			return "redirect:/categories";
 		
 		Category originalCategory = optCategory.get();
+		
+		category.setId(originalCategory.getId());
+		category.setSlug(slg.slugify(category.getName()));
 		
 		for (Photo photo : photoService.findAll()) {
 			if (category.hasPhoto(photo) && !originalCategory.hasPhoto(photo)) {
@@ -135,9 +144,9 @@ public class CategoryController {
 			photoService.savePhoto(photo);
 		}
 		
-		categoryService.saveCategory(category);
+		Category savedCategory = categoryService.saveCategory(category);
 		
-		return "redirect:/categories/" + id;
+		return "redirect:/categories/" + savedCategory.getSlug();
 	}
 	
 	@PostMapping("/delete/{id}")

@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.slugify.Slugify;
+
 import jakarta.validation.Valid;
 
 @Controller
 public class PhotoController {
+	
+	final Slugify slg = Slugify.builder().build();
 	
 	@Autowired
 	private PhotoService photoService;
@@ -50,11 +54,11 @@ public class PhotoController {
 		return "/photo/index";
 	}
 	
-	@GetMapping("/{id}")
-	public String show(@PathVariable int id, Model model, Authentication authentication) {
+	@GetMapping("/{slug}")
+	public String show(@PathVariable String slug, Model model, Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
 		
-		Optional<Photo> optPhoto = photoService.findById(id);
+		Optional<Photo> optPhoto = photoService.findBySlug(slug);
 		
 		if (optPhoto.isEmpty())
 			return "redirect:/";
@@ -92,17 +96,18 @@ public class PhotoController {
 		
 		photo.setUser((User) authentication.getPrincipal());
 		photo.setHiddenBySuperadmin(false);
+		photo.setSlug(slg.slugify(photo.getTitle()));
 		
 		Photo savedPhoto = photoService.savePhoto(photo);
 		
-		return "redirect:/" + savedPhoto.getId();
+		return "redirect:/" + savedPhoto.getSlug();
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable int id, Model model, Authentication authentication) {
+	@GetMapping("/edit/{slug}")
+	public String edit(@PathVariable String slug, Model model, Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
 		
-		Optional<Photo> optPhoto = photoService.findById(id);
+		Optional<Photo> optPhoto = photoService.findBySlug(slug);
 		
 		if (optPhoto.isEmpty())
 			return "redirect:/";
@@ -118,24 +123,28 @@ public class PhotoController {
 		return "/photo/create-update";
 	}
 	
-	@PostMapping("/edit/{id}")
-	public String update(@PathVariable int id, @Valid @ModelAttribute Photo photo, BindingResult bindingResult, Model model, Authentication authentication) {
+	@PostMapping("/edit/{slug}")
+	public String update(@PathVariable String slug, @Valid @ModelAttribute Photo photo, BindingResult bindingResult, Model model, Authentication authentication) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("categories", categoryService.findAll());
 			
 			return "/photo/create-update";
 		}
 		
-		Optional<Photo> optPhoto = photoService.findById(id);
+		Optional<Photo> optPhoto = photoService.findBySlug(slug);
 		
 		if (optPhoto.isEmpty())
 			return "redirect:/";
 		
-		User user = optPhoto.get().getUser();
+		Photo originalPhoto = optPhoto.get();
+		
+		User user = originalPhoto.getUser();
 		
 		User authUser = (User) authentication.getPrincipal();
 
+		photo.setId(originalPhoto.getId());
 		photo.setUser(user);
+		photo.setSlug(slg.slugify(photo.getTitle()));
 		
 		if (authUser.getId() == 1 && !photo.getVisible())
 			photo.setHiddenBySuperadmin(true);
@@ -147,7 +156,7 @@ public class PhotoController {
 		
 		Photo savedPhoto = photoService.savePhoto(photo);
 		
-		return "redirect:/" + savedPhoto.getId();
+		return "redirect:/" + savedPhoto.getSlug();
 	}
 	
 	@PostMapping("/delete/{id}")

@@ -14,8 +14,8 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepo categoryRepo;
 	
-	public void saveCategory(Category category) {
-		categoryRepo.save(category);
+	public Category saveCategory(Category category) {
+		return categoryRepo.save(category);
 	}
 	
 	public List<Category> findAll() {
