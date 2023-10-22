@@ -10,7 +10,7 @@ import { RouterLink } from 'vue-router'
           Contact me
         </RouterLink>
         <RouterLink :to="{ name: 'contact' }" class="contact-mobile btn btn-outline-light d-flex align-items-center justicy-content-center">
-          <font-awesome-icon icon="fa-regular fa-envelope" size="lg" class="text-light" />
+          <font-awesome-icon icon="fa-regular fa-envelope" size="xl" class="text-light" />
         </RouterLink>
       </div>
       <div class="text-center position-absolute top-50 start-50 translate-middle">
@@ -23,7 +23,7 @@ import { RouterLink } from 'vue-router'
           Personal area
         </a>
         <a href="http://localhost:8080/" target="_blank" class="login-mobile btn btn-outline-light d-flex align-items-center justicy-content-center">
-          <font-awesome-icon icon="fa-regular fa-user" size="lg" class="text-light" />
+          <font-awesome-icon icon="fa-regular fa-user" size="xl" class="text-light" />
         </a>
       </div>
     </div>
