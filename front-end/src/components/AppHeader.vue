@@ -15,7 +15,7 @@ import { RouterLink } from 'vue-router'
       </div>
       <div class="text-center position-absolute top-50 start-50 translate-middle">
         <RouterLink :to="{ name: 'home' }" class="text-decoration-none">
-          <img src="../assets/img/logo.png" alt="Site logo" height="104" id="site_logo" />
+          <img src="../assets/img/logo.png" alt="Site logo" height="128" id="site_logo" />
         </RouterLink>
       </div>
       <div class="position-absolute top-50 translate-middle-y" style="right: 12px;">
