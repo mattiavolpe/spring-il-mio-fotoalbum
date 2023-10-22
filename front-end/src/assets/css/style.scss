@@ -132,7 +132,11 @@ footer {
       align-items: center !important;
       gap: 16px;
     }
-  
+  }
+}
+
+@media screen and (min-width: 992px) {
+  main {
     .mobile_column {
       display: none;
     }

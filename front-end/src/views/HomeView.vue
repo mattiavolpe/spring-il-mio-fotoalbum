@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { RouterLink } from 'vue-router'
 
 const API_URL = "http://localhost:8080/api/v1";
@@ -12,6 +12,8 @@ const filter = ref("");
 const lastResearch = ref("");
 
 const loading = ref(true);
+
+const isMobile = ref(window.innerWidth < 992);
 
 function searchPhotos() {
   if (filter.value === "")
@@ -46,7 +48,7 @@ function fetchAll() {
   .get(API_URL)
   .then(res => {
     if (res.status == 200)
-      photos.value = res.data;
+    photos.value = photos.value.concat(res.data);
     else
       photos.value = [];
   })
@@ -60,7 +62,21 @@ function fetchAll() {
 }
 
 onMounted(() => {
+  console.log();
   fetchAll();
+
+  const main = document.querySelector("main");
+
+  main.addEventListener("scroll", e => {
+    if (e.target.scrollTop >= e.target.scrollHeight - e.target.offsetHeight - 300) {
+      console.log("FETCH");
+      fetchAll();
+    }
+  })
+
+  window.addEventListener("resize", () => {
+    isMobile.value = window.innerWidth < 992
+  })
 })
 
 </script>
@@ -92,7 +108,7 @@ onMounted(() => {
       
       <div :class="photos.length > 2 || lastResearch != '' ? 'row row-cols-1 row-cols-lg-3' : 'row row-cols-1'">
 
-        <div v-for="photo in photos" class="col mobile_column">
+        <div v-if="isMobile" v-for="photo in photos" class="col mobile_column">
           <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
             <img :src="photo.url" :alt="photo.title + ' image'" class="w-100" />
             <div class="image_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
@@ -101,7 +117,7 @@ onMounted(() => {
           </RouterLink>
         </div>
 
-        <div class="col large_column">
+        <div v-if="!isMobile" class="col large_column">
           <template v-for="(photo, index) in photos">
             <template v-if="index % 3 == 0">
               <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
@@ -114,7 +130,7 @@ onMounted(() => {
           </template>
         </div>
 
-        <div class="col large_column">
+        <div v-if="!isMobile" class="col large_column">
           <template v-for="(photo, index) in photos">
             <template v-if="index % 3 == 1">
               <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
@@ -127,7 +143,7 @@ onMounted(() => {
           </template>
         </div>
 
-        <div class="col large_column">
+        <div v-if="!isMobile" class="col large_column">
           <template v-for="(photo, index) in photos">
             <template v-if="index % 3 == 2">
               <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
