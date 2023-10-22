@@ -13,7 +13,7 @@ const loading = ref(true);
 
 function fetchPhoto() {
   axios
-  .get(`${API_URL}/${route.params.id}`)
+  .get(`${API_URL}/${route.params.slug}`)
   .then(res => {
     if (res.status == 200)
       photo.value = res.data;
@@ -74,12 +74,12 @@ onMounted(() => {
       <div v-if="photo.categories.length > 0" class="bg-dark mt-4 p-3 rounded">
         <h4 class="m-0 text-light">Categories:</h4>
         <span v-for="(category, index) in photo.categories">
-          <RouterLink :to="{ name: 'categoryShow', params: { id: category.id}}" v-if="index < photo.categories.length - 1 && photo.categories.length > 1" class="fst-italic text-secondary text-decoration-none">
+          <RouterLink :to="{ name: 'categoryShow', params: { slug: category.slug }}" v-if="index < photo.categories.length - 1 && photo.categories.length > 1" class="fst-italic text-secondary text-decoration-none">
             <span class="text-decoration-underline">{{category.name}}</span> - 
           </RouterLink>
         </span>
         <span v-for="(category, index) in photo.categories">
-          <RouterLink :to="{ name: 'categoryShow', params: { id: category.id}}" v-if="index === photo.categories.length - 1" class="fst-italic text-secondary">
+          <RouterLink :to="{ name: 'categoryShow', params: { slug: category.slug }}" v-if="index === photo.categories.length - 1" class="fst-italic text-secondary">
             {{category.name}}
           </RouterLink>
         </span>

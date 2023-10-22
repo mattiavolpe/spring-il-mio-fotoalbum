@@ -26,6 +26,10 @@ public class CategoryService {
 		return categoryRepo.findById(id);
 	}
 	
+	public Optional<Category> findBySlug(String slug) {
+		return categoryRepo.findBySlug(slug);
+	}
+	
 	public List<Category> filterByName(String name) {
 		return categoryRepo.findByNameContaining(name);
 	}

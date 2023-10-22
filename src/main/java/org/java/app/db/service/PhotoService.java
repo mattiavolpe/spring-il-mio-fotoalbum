@@ -27,6 +27,10 @@ public class PhotoService {
 		return photoRepo.findById(id);
 	}
 	
+	public Optional<Photo> findBySlug(String slug) {
+		return photoRepo.findBySlug(slug);
+	}
+	
 	public List<Photo> findUserPhotos(User user) {
 		return photoRepo.findByUser(user);
 	}

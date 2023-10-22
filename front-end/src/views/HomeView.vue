@@ -93,7 +93,7 @@ onMounted(() => {
       <div :class="photos.length > 2 || lastResearch != '' ? 'row row-cols-1 row-cols-lg-3' : 'row row-cols-1'">
 
         <div v-for="photo in photos" class="col mobile_column">
-          <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block position-relative text-decoration-none text-light mb-4">
+          <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
             <img :src="photo.url" :alt="photo.title + ' image'" class="w-100" />
             <div class="image_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
               <h3 class="mb-0 text-center px-3">{{ photo.title }}</h3>
@@ -104,7 +104,7 @@ onMounted(() => {
         <div class="col large_column">
           <template v-for="(photo, index) in photos">
             <template v-if="index % 3 == 0">
-              <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block position-relative text-decoration-none text-light mb-4">
+              <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
                 <img :src="photo.url" :alt="photo.title + ' image'" class="w-100" />
                 <div class="image_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <h3 class="mb-0 text-center px-3">{{ photo.title }}</h3>
@@ -117,7 +117,7 @@ onMounted(() => {
         <div class="col large_column">
           <template v-for="(photo, index) in photos">
             <template v-if="index % 3 == 1">
-              <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block position-relative text-decoration-none text-light mb-4">
+              <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
                 <img :src="photo.url" :alt="photo.title + ' image'" class="w-100" />
                 <div class="image_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <h3 class="mb-0 text-center px-3">{{ photo.title }}</h3>
@@ -130,7 +130,7 @@ onMounted(() => {
         <div class="col large_column">
           <template v-for="(photo, index) in photos">
             <template v-if="index % 3 == 2">
-              <RouterLink :to="{ name: 'show', params: { id: photo.id}}" class="d-block position-relative text-decoration-none text-light mb-4">
+              <RouterLink :to="{ name: 'show', params: { slug: photo.slug }}" class="d-block position-relative text-decoration-none text-light mb-4">
                 <img :src="photo.url" :alt="photo.title + ' image'" class="w-100" />
                 <div class="image_overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <h3 class="mb-0 text-center px-3">{{ photo.title }}</h3>

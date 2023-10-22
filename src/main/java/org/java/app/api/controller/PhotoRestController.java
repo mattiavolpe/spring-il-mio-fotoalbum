@@ -47,9 +47,9 @@ public class PhotoRestController {
 		return new ResponseEntity<List<Photo>>(photos, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Photo> show(@PathVariable int id) {
-		Optional<Photo> optPhoto = photoService.findById(id);
+	@GetMapping("/{slug}")
+	public ResponseEntity<Photo> show(@PathVariable String slug) {
+		Optional<Photo> optPhoto = photoService.findBySlug(slug);
 		
 		if (optPhoto.isEmpty())
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -62,9 +62,9 @@ public class PhotoRestController {
 		return new ResponseEntity<Photo>(optPhoto.get(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/category/{id}")
-	public ResponseEntity<Map<String, Object>> showCategoryPhotos(@PathVariable int id) {
-		Optional<Category> optCategory = categoryService.findById(id);
+	@GetMapping("/category/{slug}")
+	public ResponseEntity<Map<String, Object>> showCategoryPhotos(@PathVariable String slug) {
+		Optional<Category> optCategory = categoryService.findBySlug(slug);
 		
 		if (optCategory.isEmpty())
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

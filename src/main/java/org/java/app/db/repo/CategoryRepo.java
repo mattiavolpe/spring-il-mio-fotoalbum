@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Integer>{
 	public Optional<Category> findById(int id);
+	public Optional<Category> findBySlug(String slug);
 	public List<Category> findByNameContaining(String name);
 }

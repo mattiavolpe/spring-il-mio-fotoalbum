@@ -1,6 +1,7 @@
 package org.java.app.db.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.java.app.db.auth.pojo.User;
 import org.java.app.db.pojo.Photo;
@@ -16,4 +17,5 @@ public interface PhotoRepo extends JpaRepository<Photo, Integer> {
 	public List<Photo> findByUser(User user);
 	public List<Photo> findByTitleContainingOrDescriptionContaining(String title, String description);
 	public List<Photo> findByUserAndTitleContainingOrUserAndDescriptionContaining(User user, String title, User user2, String description);
+	public Optional<Photo> findBySlug(String slug);
 }

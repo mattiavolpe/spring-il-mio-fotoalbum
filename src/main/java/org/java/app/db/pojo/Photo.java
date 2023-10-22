@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.java.app.db.auth.pojo.User;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.github.slugify.Slugify;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,10 +19,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Photo {
+	
+	@Transient
+	final Slugify slg = Slugify.builder().build();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +36,10 @@ public class Photo {
 	@Length(max = 255)
 	@Column(unique = true, nullable = false)
 	private String title;
+	
+	@Length(max = 255)
+	@Column(unique = true, nullable = false)
+	private String slug;
 	
 	@Length(max = 2000, message = "The description can have a maximum of 2000 characters")
 	@Lob
@@ -62,6 +71,7 @@ public class Photo {
 	
 	public Photo(String title, String description, String url, Boolean visible, Boolean hiddenBySuperadmin, User user, Category...categories) {
 		setTitle(title);
+		setSlug(slg.slugify(title));
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
@@ -84,6 +94,14 @@ public class Photo {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
 	}
 
 	public String getDescription() {

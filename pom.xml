@@ -73,6 +73,13 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>8.0.33</version>
 		</dependency>
+		
+		<dependency>
+	    <groupId>com.github.slugify</groupId>
+	    <artifactId>slugify</artifactId>
+	    <version>3.0.6</version>
+		</dependency>
+
 		<!-- //////////////////// -->
 		
 		<!-- EXTRAS -->
