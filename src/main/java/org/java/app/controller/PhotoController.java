@@ -159,9 +159,9 @@ public class PhotoController {
 		return "redirect:/" + savedPhoto.getSlug();
 	}
 	
-	@PostMapping("/delete/{id}")
-	public String delete(@PathVariable int id) {
-		Optional<Photo> optPhoto = photoService.findById(id);
+	@PostMapping("/delete/{slug}")
+	public String delete(@PathVariable String slug) {
+		Optional<Photo> optPhoto = photoService.findBySlug(slug);
 		
 		if (optPhoto.isEmpty())
 			return "redirect:/";

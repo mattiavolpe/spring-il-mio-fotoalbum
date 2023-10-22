@@ -149,9 +149,9 @@ public class CategoryController {
 		return "redirect:/categories/" + savedCategory.getSlug();
 	}
 	
-	@PostMapping("/delete/{id}")
-	public String delete(@PathVariable int id) {
-		Optional<Category> optCategory = categoryService.findById(id);
+	@PostMapping("/delete/{slug}")
+	public String delete(@PathVariable String slug) {
+		Optional<Category> optCategory = categoryService.findBySlug(slug);
 		
 		if (optCategory.isEmpty())
 			return "redirect:/categories";
